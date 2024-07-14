@@ -1,26 +1,26 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Navimg from "../../../assets/global.png";
+import {
+  useGlobalState,
+  useGlobalStateUpdate,
+} from "../../../Layout/GlobalState";
 
 export const Navbar = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const globalState = useGlobalState();
+  const setGlobalState = useGlobalStateUpdate();
 
-  useEffect(() => {
-    const UserToken = localStorage.getItem("token");
-    if (UserToken) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-  }, []);
   const handleLogout = async () => {
-    // const response = await axios("http://127.0.0.1:8000/user/logout/");
+    setGlobalState((prevState) => ({
+      ...prevState,
+      isAuthenticated: false,
+      isPatient: false,
+      isDoctor: true,
+    }));
     localStorage.removeItem("token");
     localStorage.removeItem("user_id");
     localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("patient_id");
-    setIsLoggedIn(false);
-    window.location.reload();
+    localStorage.removeItem("doctor_id");
   };
   return (
     <div className="w-full shadow-lg">
@@ -52,7 +52,20 @@ export const Navbar = () => {
               </li>
 
               <li>
-                <a className="text-lg font-bold hover:text-pink-500">About</a>
+                <a
+                  href="/about-us"
+                  className="text-lg font-bold hover:text-pink-500"
+                >
+                  About
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/vaccine-campaign"
+                  className="text-lg font-bold hover:text-pink-500"
+                >
+                  All Vaccine
+                </a>
               </li>
             </ul>
           </div>
@@ -63,69 +76,94 @@ export const Navbar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <a className="text-lg font-bold hover:text-pink-500">Home</a>
+              <a href="/" className="text-lg font-bold hover:text-pink-500">
+                Home
+              </a>
             </li>
 
             <li>
-              <a className="text-lg font-bold hover:text-pink-500">About us</a>
+              <a
+                href="/about-us"
+                className="text-lg font-bold hover:text-pink-500"
+              >
+                About us
+              </a>
+            </li>
+            <li>
+              <a
+                href="/vaccine-campaign"
+                className="text-lg font-bold hover:text-pink-500"
+              >
+                All Vaccine
+              </a>
             </li>
           </ul>
         </div>
         <div className="navbar-end">
-          {isLoggedIn ? (
+          {globalState.isAuthenticated ? (
             <>
-              <a
-                className="btn mr-6 uppercase py-2 px-4 rounded-lg bg-pink-500 border-2 border-transparent text-white text-md mr-4 hover:bg-pink-400"
+              <Link
                 onClick={handleLogout}
+                className="btn uppercase py-2 px-4 rounded-lg bg-pink-500 border-2 border-transparent text-white text-md mr-4 hover:bg-pink-400"
               >
                 Logout
+              </Link>
+              {globalState.isPatient ? (
+                <Link
+                  to={"profile/"}
+                  className="btn uppercase py-2 px-4 rounded-lg bg-transparent border-2 border-pink-500 text-pink-500  hover:bg-pink-500 hover:text-white text-md"
+                >
+                  Profile
+                </Link>
+              ) : (
+                <Link
+                  to={"dashboard/"}
+                  className="btn uppercase py-2 px-4 rounded-lg bg-transparent border-2 border-pink-500 text-pink-500  hover:bg-pink-500 hover:text-white text-md"
+                >
+                  Dashboard
+                </Link>
+              )}
+            </>
+          ) : (
+            <>
+              <a
+                className="btn uppercase py-2 px-4 rounded-lg bg-pink-500 border-2 border-transparent text-white text-md mr-4 hover:bg-pink-400"
+                href="/login"
+              >
+                Login
               </a>
               <div className="dropdown dropdown-end">
                 <div
                   tabIndex={0}
                   role="button"
-                  className="btn btn-ghost btn-circle avatar"
+                  className="btn btn-ghost ml-4 btn-circle avatar"
                 >
-                  <div className="w-10 rounded-full">
-                    <img
-                      alt="Tailwind CSS Navbar component"
-                      src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-                    />
-                  </div>
+                  <a className="btn uppercase py-2 px-4 rounded-lg bg-transparent border-2 border-pink-500 text-pink-500  hover:bg-pink-500 hover:text-white text-md">
+                    Register
+                  </a>
                 </div>
                 <ul
                   tabIndex={0}
                   className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
                 >
                   <li>
-                    <a className="justify-between" href="/profile">
-                      Profile
-                      <span className="badge">New</span>
+                    <a
+                      className="justify-between p-2 hover:bg-pink-500 hover:text-white text-pink-600 font-bold"
+                      href="/register"
+                    >
+                      Register as Patient
                     </a>
                   </li>
                   <li>
-                    <a href="/dashboard">Dashboard</a>
-                  </li>
-                  <li>
-                    <a onClick={handleLogout}>Logout</a>
+                    <a
+                      href="/register/doctor"
+                      className="p-2 hover:bg-pink-500 hover:text-white text-pink-600 font-bold"
+                    >
+                      Register as Doctor
+                    </a>
                   </li>
                 </ul>
               </div>
-            </>
-          ) : (
-            <>
-              <Link
-                to={"login/"}
-                className="btn uppercase py-2 px-4 rounded-lg bg-pink-500 border-2 border-transparent text-white text-md mr-4 hover:bg-pink-400"
-              >
-                Login
-              </Link>
-              <Link
-                to={"register/"}
-                className="btn uppercase py-2 px-4 rounded-lg bg-transparent border-2 border-pink-500 text-pink-500  hover:bg-pink-500 hover:text-white text-md"
-              >
-                Register
-              </Link>
             </>
           )}
         </div>

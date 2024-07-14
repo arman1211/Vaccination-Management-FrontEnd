@@ -1,8 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
-export const Registration = () => {
+const DoctorRegistration = () => {
   const [username, setUsername] = useState("");
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
@@ -17,7 +16,7 @@ export const Registration = () => {
   const handleRegistration = async (e) => {
     e.preventDefault();
     const data = {
-      user: {
+      doctor: {
         username: username,
         password: password,
         confirm_password: confirmPassword,
@@ -31,10 +30,10 @@ export const Registration = () => {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/patient/register/",
+        "http://127.0.0.1:8000/doctor/register/",
         data
       );
-      console.log(response.data);
+      console.log(response);
       if (response.data.message) {
         setMessage(response.data.message);
       }
@@ -56,7 +55,7 @@ export const Registration = () => {
             alt="Workflow"
           />
           <h2 className="mt-6 text-center text-3xl leading-9 font-extrabold text-pink-500">
-            Create a Patient account
+            Create a Doctor account
           </h2>
           <p className="mt-2 text-center text-sm leading-5 text-gray-500 max-w">
             Or <br />
@@ -167,7 +166,7 @@ export const Registration = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5
-                "
+                  "
                   />
                 </div>
               </div>
@@ -242,9 +241,9 @@ export const Registration = () => {
                     />
                   </svg>
                   <span>{message}</span>
+                  {error && <span>{error}</span>}
                 </div>
               )}
-              {error && <span>{error}</span>}
             </form>
           </div>
         </div>
@@ -253,4 +252,4 @@ export const Registration = () => {
   );
 };
 
-export default Registration;
+export default DoctorRegistration;

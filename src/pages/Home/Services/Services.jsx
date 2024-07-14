@@ -1,70 +1,73 @@
 import { Component } from "react";
+import img1 from "../../../assets/service1.jpg";
+import img2 from "../../../assets/service2.png";
 
 export class Services extends Component {
   render() {
     return (
       <div>
-        <section className="w-full mx-auto py-10 bg-gray-50 ">
-          <div className="w-fit pb-1 px-2 mx-4 rounded-md text-2xl font-semibold border-b-2 border-blue-600 ">
+        <h2 className="stylish-regular text-5xl  text-pink-500 text-center font-bold">
+          Our Services...
+        </h2>
+        <div className="w-full mx-auto p-10 mt-5 bg-gray-50">
+          <div className="w-fit pb-1 px-2 mx-4 rounded-md text-2xl font-semibold border-b-2 border-pink-500">
             Services
           </div>
 
-          <div className="xl:w-[80%] sm:w-[85%] xs:w-[90%] mx-auto flex md:flex-row xs:flex-col lg:gap-4 xs:gap-2 justify-center lg:items-stretch md:items-center mt-4">
+          <div className="xl:w-[80%] sm:w-[85%] xs:w-[90%] mx-auto flex flex-col lg:flex-row lg:gap-4 xs:gap-2 justify-center lg:items-stretch md:items-center mt-4">
             <div className="lg:w-[50%] xs:w-full">
               <img
                 className="lg:rounded-t-lg sm:rounded-sm xs:rounded-sm"
-                src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw1fHxob21lfGVufDB8MHx8fDE3MTA0OTAwNjl8MA&ixlib=rb-4.0.3&q=80&w=1080"
+                src={img1}
                 alt="billboard image"
               />
             </div>
-            <div className="lg:w-[50%] sm:w-full xs:w-full bg-gray-100md:p-4 xs:p-0 rounded-md">
-              <h2 className="text-3xl font-semibold text-gray-900 ">
-                Lorem ipsum dolor sit amet consectetur
+            <div className="lg:w-[50%] sm:w-full xs:w-full bg-gray-100 md:p-4 xs:p-4 rounded-md">
+              <h2 className="text-3xl font-semibold text-pink-900">
+                Comprehensive Vaccination Management
               </h2>
               <p className="text-md mt-4">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Tempore placeat assumenda nam veritatis, magni doloremque
-                pariatur quos fugit ipsa id voluptatibus deleniti officiis cum
-                ratione eligendi sed necessitatibus aliquam error laborum
-                delectus quaerat. Delectus hic error eligendi sed repellat natus
-                fuga nobis tempora possimus ullam!
+                Ensure your community stays healthy with our state-of-the-art
+                vaccination management system. Our platform streamlines the
+                process of tracking, scheduling, and managing vaccination
+                campaigns to ensure everyone gets the protection they need, on
+                time and efficiently.
               </p>
             </div>
           </div>
 
-          <div className="xl:w-[80%] sm:w-[85%] xs:w-[90%] mx-auto flex md:flex-row xs:flex-col lg:gap-4 xs:gap-2 justify-center lg:items-stretch md:items-center mt-6">
-            <div className="md:hidden sm:block xs:block xs:w-full">
+          <div className="xl:w-[80%] sm:w-[85%] xs:w-[90%] mx-auto flex flex-col lg:flex-row lg:gap-4 xs:gap-2 justify-center lg:items-stretch md:items-center mt-6">
+            <div className="lg:hidden md:hidden sm:block xs:block xs:w-full">
               <img
                 className="lg:rounded-t-lg sm:rounded-sm xs:rounded-sm"
-                src="https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHwxMXx8aG9tZXxlbnwwfDB8fHwxNzEwNDkwMDcwfDA&ixlib=rb-4.0.3&q=80&w=1080"
+                src={img2}
                 alt="billboard image"
               />
             </div>
 
-            <div className="lg:w-[50%] xs:w-full bg-gray-100  md:p-4 xs:p-0 rounded-md">
-              <h2 className="text-3xl font-semibold text-gray-900">
-                Lorem ipsum dolor sit amet consectetur
+            <div className="lg:w-[50%] xs:w-full bg-gray-100 md:p-4 xs:p-4 rounded-md">
+              <h2 className="text-3xl font-semibold text-pink-900">
+                Automated Appointment Scheduling
               </h2>
 
               <p className="text-md mt-4">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Tempore placeat assumenda nam veritatis, magni doloremque
-                pariatur quos fugit ipsa id voluptatibus deleniti officiis cum
-                ratione eligendi sed necessitatibus aliquam error laborum
-                delectus quaerat. Delectus hic error eligendi sed repellat natus
-                fuga nobis tempora possimus ullam!
+                Simplify the appointment scheduling process with our automated
+                system. Patients can easily book their vaccination appointments
+                online, receive reminders, and reschedule if necessary. Our
+                system helps minimize no-shows and ensures a smooth vaccination
+                process.
               </p>
             </div>
 
-            <div className="md:block sm:hidden xs:hidden lg:w-[50%] xs:w-full">
+            <div className="hidden lg:block md:block lg:w-[50%] xs:w-full">
               <img
                 className="lg:rounded-t-lg xs:rounded-sm"
-                src="https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHwxMXx8aG9tZXxlbnwwfDB8fHwxNzEwNDkwMDcwfDA&ixlib=rb-4.0.3&q=80&w=1080"
+                src={img2}
                 alt="billboard image"
               />
             </div>
           </div>
-        </section>
+        </div>
       </div>
     );
   }

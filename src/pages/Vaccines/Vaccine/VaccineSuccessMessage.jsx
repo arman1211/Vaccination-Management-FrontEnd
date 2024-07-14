@@ -15,9 +15,10 @@ const VaccineSuccessMessage = ({ message }) => {
             d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
           />
         </svg>
-        <span className="font-bold text-pink-800">
+        <span className=" font-semibold text-pink-800">
           Your appointment is Submitted. Your second dose date at{" "}
-          {message.second_dose_date}
+          <span className="font-bold">{message.second_dose_date}</span>. Check
+          Your Mail
         </span>
       </div>
     </div>

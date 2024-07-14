@@ -1,22 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const VaccineReview = () => {
+const VaccineReview = ({ vaccine }) => {
   const [reviews, setReviews] = useState([]);
-  const [patient, setPatient] = useState(null);
-  const patientId = localStorage.getItem("patient_id");
-  useEffect(() => {
-    const fetchUser = async () => {
-      const response = await axios.get("http://127.0.0.1:8000/patient/list/");
-      console.log(response);
-      if (response.data) {
-        const patien = response.data.find((pat) => pat.id == patientId);
-        console.log(patien);
-        setPatient(patien);
-      }
-    };
-    fetchUser();
-  }, [patientId]);
 
   useEffect(() => {
     const fetchReviews = async () => {
@@ -25,33 +11,61 @@ const VaccineReview = () => {
       );
       if (response.data) {
         console.log(response.data);
-        setReviews(response.data);
+        const allReview = response.data.filter(
+          (review) => review.vaccine == vaccine.id
+        );
+        if (allReview) {
+          setReviews(allReview);
+        }
       }
     };
     fetchReviews();
-  }, []);
+  }, [vaccine.id]);
   return (
-    <section className="bg-white px-4 py-12 md:py-24">
+    <section className="bg-white py-12 md:py-24">
       <div className="max-w-screen-xl mx-auto">
-        <h2 className="font-bold text-pink-500 text-center text-3xl leading-none uppercase max-w-2xl mx-auto mb-12">
+        <h2 className="font-bold text-pink-500 text-center text-3xl leading-none  max-w-2xl mx-auto mb-12">
           What Patient Are Saying
         </h2>
-        <div className="flex flex-col gap-3 flex-wrap space-y-4 md:space-y-0 md:flex-row md:flex-auto md:space-x-4 relative">
-          {reviews.map((review) => (
-            <div
-              key={review.id}
-              className="bg-gray-200 rounded-lg p-8 text-center md:w-1/4"
-            >
-              <p className="font-bold uppercase">{patient.user.username}</p>
-              <p className="text-xl font-light italic text-gray-700">
-                {review.reviews}
-              </p>
-              <div className="flex items-center justify-center space-x-2 mt-4">
-                {review.rating}
+        {reviews && (
+          <div className="grid md:grid-cols-3 lg:grid-cols-4 sm:grid-cols-2 xs:grid-cols-1 gap-3 flex-wrap space-y-4 md:space-y-0  relative">
+            {reviews.map((review) => (
+              <div key={review.id} className="">
+                <div className="hover:animate-background rounded-xl bg-gradient-to-r from-pink-400 to-pink-500 p-0.5 shadow-xl transition hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s]">
+                  <div className="rounded-[10px] bg-white p-4 sm:p-6">
+                    <h3 className="mt-0.5 text-lg font-medium text-gray-900">
+                      {review.reviews}
+                    </h3>
+
+                    <time
+                      dateTime="2022-10-10"
+                      className="block text-xs text-gray-500"
+                    >
+                      {" "}
+                      {review.reviewd_at}{" "}
+                    </time>
+                    <p className="text-gray-500 font-semibold">
+                      {review.patient_name}
+                    </p>
+
+                    <div className="mt-4 flex flex-wrap gap-1">
+                      <span className="whitespace-nowrap rounded-ful px-2.5 py-0.5 text-xs">
+                        {review.rating}
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
+        {reviews.length == 0 && (
+          <div>
+            <h2 className="text-2xl text-gray-600 text-center mb-5">
+              No Reviews Yet
+            </h2>
+          </div>
+        )}
       </div>
     </section>
   );

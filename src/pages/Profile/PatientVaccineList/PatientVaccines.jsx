@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const PatientVaccines = () => {
   const [vaccines, setVaccines] = useState([]);
@@ -28,20 +29,22 @@ const PatientVaccines = () => {
 
   return (
     <div>
-      <div className="overflow-x-auto m-12">
+      <div className="overflow-x-auto m-12  bg-base-100 shadow-md rounded">
         <h2 className="font-bold text-center text-4xl text-pink-500 mb-6">
           Your all Vaccine History
         </h2>
         <table className="table table-sm">
           <thead>
-            <tr>
+            <tr className="font-bold text-lg">
               <th>No.</th>
               <th>Vaccine Name</th>
               <th>Start Date</th>
               <th>End Date</th>
               <th>Your first dose</th>
               <th>Second dose date</th>
+              <th>status</th>
               <th>Review</th>
+              <th>Reports</th>
             </tr>
           </thead>
           <tbody>
@@ -53,10 +56,28 @@ const PatientVaccines = () => {
                 <td>{vaccine.vaccine.end_date}</td>
                 <td>{vaccine.first_dose_date}</td>
                 <td>{vaccine.second_dose_date}</td>
+                {vaccine.is_completed ? (
+                  <td className="text-success font-bold">Completed ✅</td>
+                ) : (
+                  <td className="text-warning font-bold">Pending ⌛</td>
+                )}
+
                 <td>
-                  <button className="btn btn-sm bg-pink-500 text-white hover:text-black">
+                  <Link
+                    to={`/vaccine-campaign/details/${vaccine.vaccine.id}`}
+                    className="btn btn-sm bg-pink-500 text-white hover:text-black"
+                  >
                     Review
-                  </button>
+                  </Link>
+                </td>
+                <td>
+                  <Link
+                    target="_blank"
+                    className="bg-green-700 text-white p-1.5 rounded"
+                    to={`http://127.0.0.1:8000/vaccine-campaign/vaccine-dose-report/${vaccine.id}`}
+                  >
+                    Download Report
+                  </Link>
                 </td>
               </tr>
             ))}

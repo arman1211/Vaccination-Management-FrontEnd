@@ -1,21 +1,47 @@
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useGlobalStateUpdate } from "../../../Layout/GlobalState";
 
 const Login = () => {
+  const setGlobalState = useGlobalStateUpdate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
-
   const getPatientId = async (id) => {
     const response = await axios("http://127.0.0.1:8000/patient/list/");
     console.log(response);
+    let patId;
+    const patient = response.data.find((pat) => pat.user.id === id);
+    if (patient) {
+      setGlobalState((prevState) => ({
+        ...prevState,
+        isAuthenticated: true,
+        isPatient: true,
+        isDoctor: false,
+      }));
 
-    const patient = response.data.filter((pat) => pat.user.id === id);
-    const patId = patient[0].id;
-    return patId;
+      patId = patient.id;
+      return patId;
+    }
+  };
+  const getDoctorId = async (id) => {
+    const response = await axios("http://127.0.0.1:8000/doctor/list/");
+    console.log(response);
+    const doctor = response.data.find((pat) => pat.doctor.id === id);
+    if (doctor) {
+      setGlobalState((prevState) => ({
+        ...prevState,
+        isAuthenticated: true,
+        isPatient: false,
+        isDoctor: true,
+      }));
+      const docId = doctor.id;
+      console.log("docid ", docId);
+      return docId;
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -28,16 +54,20 @@ const Login = () => {
         password,
       });
       if (response.data.token) {
-        const patient = await getPatientId(response.data.user_id);
-        console.log(patient);
+        const pat_id = await getPatientId(response.data.user_id);
+        const doc_id = await getDoctorId(response.data.user_id);
+        console.log(pat_id, doc_id);
         localStorage.setItem("isLoggedIn", "true");
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("user_id", response.data.user_id);
-        localStorage.setItem("patient_id", parseInt(patient));
+        if (pat_id) {
+          localStorage.setItem("patient_id", parseInt(pat_id));
+        } else {
+          localStorage.setItem("doctor_id", parseInt(doc_id));
+        }
 
         setIsLoading(false);
-        navigate("/", { state: { successMessage: "Login successful!" } });
-        window.location.reload();
+        navigate("/");
       } else {
         setError(response.data.error);
         setIsLoading(false);

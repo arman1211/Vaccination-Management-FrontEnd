@@ -2,9 +2,14 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import profile from "../../../assets/profile2.jpg";
 import PatientVaccines from "../PatientVaccineList/PatientVaccines";
+import UpdateInfo from "../UpdateInfo/UpdateInfo";
+import UpdadePassword from "../UpdateInfo/UpdadePassword";
 
 const Profile = () => {
   const [patient, setPatient] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     const userId = localStorage.getItem("user_id");
@@ -27,6 +32,17 @@ const Profile = () => {
   if (!patient) {
     return <span className="loading loading-bars loading-lg mx-auto"></span>;
   }
+  const handleUpdateClick = () => {
+    setIsModalOpen(true);
+  };
+  const handlePasswordUpdateClick = () => {
+    setIsPasswordModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setIsPasswordModalOpen(false);
+  };
 
   return (
     <>
@@ -54,13 +70,57 @@ const Profile = () => {
             <p className="mt-2 text-gray-700">
               <strong>NID:</strong> {patient.nid}
             </p>
-            <button className="btn btn-neutral btn-sm mt-4">Update Info</button>
-            <button className="btn btn-neutral btn-sm ml-4">
+            <button
+              className="btn btn-neutral btn-sm mt-4"
+              onClick={handleUpdateClick}
+            >
+              Update Info
+            </button>
+            <button
+              className="btn btn-neutral btn-sm ml-4"
+              onClick={handlePasswordUpdateClick}
+            >
               Change Password
             </button>
           </div>
+          {message && (
+            <div role="alert" className="alert alert-success bg-green-300">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 shrink-0 stroke-current"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <span>{message}</span>
+            </div>
+          )}
         </div>
       </div>
+      {isModalOpen && (
+        <UpdateInfo
+          patient={patient}
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          setPatient={setPatient}
+          setMessage={setMessage}
+        ></UpdateInfo>
+      )}
+      {isPasswordModalOpen && (
+        <UpdadePassword
+          patient={patient}
+          isOpen={setIsPasswordModalOpen}
+          onClose={handleCloseModal}
+          setPatient={setPatient}
+          setMessage={setMessage}
+        ></UpdadePassword>
+      )}
       <PatientVaccines></PatientVaccines>
     </>
   );

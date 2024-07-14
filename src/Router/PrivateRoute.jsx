@@ -1,9 +1,10 @@
 import { Navigate } from "react-router-dom";
+import { useGlobalState } from "../Layout/GlobalState";
 
 const PrivateRoute = ({ element }) => {
-  const isAuthenticated = localStorage.getItem("token");
+  const globalState = useGlobalState();
 
-  return isAuthenticated ? element : <Navigate to="/login" />;
+  return globalState.isAuthenticated ? element : <Navigate to="/login" />;
 };
 
 export default PrivateRoute;

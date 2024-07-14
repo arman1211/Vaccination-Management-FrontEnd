@@ -2,6 +2,8 @@ import { Component } from "react";
 import HeroSection from "../HeroSection/HeroSection";
 import Services from "../Services/Services";
 import Features from "../Features/Features";
+import ReviewsSlide from "../Reviews/ReviewsSlide";
+import Faq from "../FAQ/Faq";
 
 export class Home extends Component {
   render() {
@@ -9,13 +11,11 @@ export class Home extends Component {
       <div>
         <HeroSection></HeroSection>
 
-        {/* service section  */}
-
         <Services></Services>
 
-        {/* feature section  */}
-
         <Features></Features>
+        <ReviewsSlide></ReviewsSlide>
+        <Faq></Faq>
       </div>
     );
   }

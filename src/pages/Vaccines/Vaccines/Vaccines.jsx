@@ -30,8 +30,10 @@ const Vaccines = () => {
   };
   return (
     <div className="container mx-auto p-4 h-auto">
-      <h1 className="text-2xl font-bold mb-4">Vaccine Campaigns</h1>
-      <div className="vaccines-container flex flex-col space-y-5">
+      <h1 className="text-4xl text-pink-500 my-16 font-bold mb-4 stylish-regular text-center">
+        All Vaccine Campaigns
+      </h1>
+      <div className="vaccines-container grid md:grid-cols-3 sm:grid-cols-1 xs:grid-cols-1 gap-10 flex-wrap space-y-5">
         {vaccines.map((vaccine) => (
           <Vaccine
             key={vaccine.id}

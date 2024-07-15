@@ -73,6 +73,10 @@ class Footer extends Component {
               </fieldset>
             </form>
           </div>
+
+          <p className="text-sm text-gray-700 text-center">
+            <small>@copywrite VacciSure, all rights reserved</small>
+          </p>
         </footer>
       </div>
     );

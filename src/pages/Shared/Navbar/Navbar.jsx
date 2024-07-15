@@ -71,8 +71,11 @@ export const Navbar = () => {
               </li>
             </ul>
           </div>
-          <Link to={"/"} className="">
+          <Link to={"/"} className="flex gap-1 items-center">
             <img src={Navimg} className="w-16" alt="" />
+            <h1 className="black-ops-one-regular md:block hidden font-bold text-4xl text-pink-600">
+              VacciSure
+            </h1>
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">

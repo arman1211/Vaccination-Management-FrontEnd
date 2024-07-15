@@ -24,7 +24,7 @@ export const Navbar = () => {
   };
   return (
     <div className="w-full shadow-lg">
-      <div className="navbar w-3/4 m-auto">
+      <div className="navbar w-full lg:w-3/4  m-auto">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -48,7 +48,9 @@ export const Navbar = () => {
               className="menu menu-sm dropdown-content rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
               <li>
-                <a className="text-lg font-bold hover:text-pink-500">Home</a>
+                <a href="/" className="text-lg font-bold hover:text-pink-500">
+                  Home
+                </a>
               </li>
 
               <li>
@@ -111,7 +113,7 @@ export const Navbar = () => {
               {globalState.isPatient ? (
                 <Link
                   to={"profile/"}
-                  className="btn uppercase py-2 px-4 rounded-lg bg-transparent border-2 border-pink-500 text-pink-500  hover:bg-pink-500 hover:text-white text-md"
+                  className="btn uppercase py-2  px-4 rounded-lg bg-transparent border-2 border-pink-500 text-pink-500  hover:bg-pink-500 hover:text-white text-md"
                 >
                   Profile
                 </Link>

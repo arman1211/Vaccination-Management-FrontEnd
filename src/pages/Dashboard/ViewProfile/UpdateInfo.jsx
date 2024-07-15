@@ -37,7 +37,7 @@ const UpdateInfo = ({ isOpen, doctor, onClose, setDoctor, setMessage }) => {
       nid: formData.nid,
     };
     const response = await axios.put(
-      `http://127.0.0.1:8000/doctor/update-doctor/${doctor.id}`,
+      `https://vaccination-management-backend-drf.onrender.com/doctor/update-doctor/${doctor.id}`,
       data
     );
     console.log(response);

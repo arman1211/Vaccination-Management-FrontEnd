@@ -26,7 +26,7 @@ const AddVaccineCampaign = () => {
     try {
       setIsLoading(true);
       const response = await axios.post(
-        "http://127.0.0.1:8000/vaccine-campaign/list/",
+        "https://vaccination-management-backend-drf.onrender.com/vaccine-campaign/list/",
         data,
         {
           headers: {

@@ -1,15 +1,43 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import CancelAppointmentModal from "./CancelAppointmentModal";
 
 const PatientVaccines = () => {
+  const [modalOpen, setModalOpen] = useState(false);
   const [vaccines, setVaccines] = useState([]);
+  const [vaccineId, setVaccineId] = useState(null);
+  const [deletePermission, setDeletePermission] = useState(false);
+  useEffect(() => {
+    const deleteDoseBooking = async () => {
+      console.log(vaccineId);
+      try {
+        const response = await axios.delete(
+          `https://vaccination-management-backend-drf.onrender.com/vaccine-campaign/booking/delete/${vaccineId}`
+        );
+        console.log(response);
+        if (response.status == 204) {
+          setVaccines((prevVaccines) =>
+            prevVaccines.filter((vaccine) => vaccine.id !== vaccineId)
+          );
+          setDeletePermission(false);
+          setModalOpen(false);
+        }
+      } catch (error) {
+        console.error("Error deleting the booking:", error);
+      }
+    };
+
+    if (deletePermission) {
+      deleteDoseBooking();
+    }
+  }, [deletePermission, vaccineId]);
   useEffect(() => {
     const userId = localStorage.getItem("user_id");
     const fetchUserVaccine = async () => {
       try {
         const response = await axios.get(
-          "http://127.0.0.1:8000/vaccine-campaign/booking/"
+          "https://vaccination-management-backend-drf.onrender.com/vaccine-campaign/booking/"
         );
         console.log(response);
         if (response.data) {
@@ -26,7 +54,13 @@ const PatientVaccines = () => {
     };
     fetchUserVaccine();
   }, []);
-
+  const handleOpenModal = (id) => {
+    setVaccineId(id);
+    setModalOpen(true);
+  };
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
   return (
     <div>
       <div className="overflow-x-auto m-12  bg-base-100 shadow-md rounded">
@@ -38,11 +72,11 @@ const PatientVaccines = () => {
             <tr className="font-bold text-lg">
               <th>No.</th>
               <th>Vaccine Name</th>
-              <th>Start Date</th>
-              <th>End Date</th>
+
               <th>Your first dose</th>
               <th>Second dose date</th>
               <th>status</th>
+              <th>Schedule</th>
               <th>Review</th>
               <th>Reports</th>
             </tr>
@@ -52,14 +86,28 @@ const PatientVaccines = () => {
               <tr key={vaccine.id}>
                 <th>{vaccine.id}</th>
                 <td>{vaccine.vaccine.name}</td>
-                <td>{vaccine.vaccine.start_date}</td>
-                <td>{vaccine.vaccine.end_date}</td>
                 <td>{vaccine.first_dose_date}</td>
                 <td>{vaccine.second_dose_date}</td>
                 {vaccine.is_completed ? (
                   <td className="text-success font-bold">Completed ✅</td>
                 ) : (
                   <td className="text-warning font-bold">Pending ⌛</td>
+                )}
+                {vaccine.is_completed ? (
+                  <td>
+                    <Link className="bg-green-700 text-white p-1.5 rounded">
+                      Done ✅
+                    </Link>
+                  </td>
+                ) : (
+                  <td>
+                    <Link
+                      className="btn btn-sm bg-pink-900 text-white hover:text-black"
+                      onClick={() => handleOpenModal(vaccine.id)}
+                    >
+                      Cancel
+                    </Link>
+                  </td>
                 )}
 
                 <td>
@@ -74,7 +122,7 @@ const PatientVaccines = () => {
                   <Link
                     target="_blank"
                     className="bg-green-700 text-white p-1.5 rounded"
-                    to={`http://127.0.0.1:8000/vaccine-campaign/vaccine-dose-report/${vaccine.id}`}
+                    to={`https://vaccination-management-backend-drf.onrender.com/vaccine-campaign/vaccine-dose-report/${vaccine.id}`}
                   >
                     Download Report
                   </Link>
@@ -83,6 +131,14 @@ const PatientVaccines = () => {
             ))}
           </tbody>
         </table>
+        {modalOpen && (
+          <CancelAppointmentModal
+            handleOpenModal={handleOpenModal}
+            onClose={handleCloseModal}
+            id={vaccineId}
+            setDeletePermission={setDeletePermission}
+          ></CancelAppointmentModal>
+        )}
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ const PatientVaccineList = () => {
     const fetchUserVaccine = async () => {
       try {
         const response = await axios.get(
-          "http://127.0.0.1:8000/vaccine-campaign/booking/"
+          "https://vaccination-management-backend-drf.onrender.com/vaccine-campaign/booking/"
         );
         console.log(response);
         if (response.data) {
@@ -22,7 +22,7 @@ const PatientVaccineList = () => {
   const handleCompleteDose = async (id) => {
     try {
       const response = await axios.put(
-        `http://127.0.0.1:8000/vaccine-campaign/complete/${id}/`,
+        `https://vaccination-management-backend-drf.onrender.com/vaccine-campaign/complete/${id}/`,
         { is_completed: true }
       );
 
@@ -39,7 +39,7 @@ const PatientVaccineList = () => {
   };
 
   return (
-    <div className="bg-base-100 shadow-lg p-2 rounded mt-2">
+    <div className="bg-base-100 shadow-lg p-2  rounded mt-2">
       <div className="overflow-x-auto">
         <h2 className="font-bold text-center text-4xl text-pink-500 mb-6">
           All Patient Vaccine History

@@ -11,7 +11,9 @@ const Login = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const getPatientId = async (id) => {
-    const response = await axios("http://127.0.0.1:8000/patient/list/");
+    const response = await axios(
+      "https://vaccination-management-backend-drf.onrender.com/patient/list/"
+    );
     console.log(response);
     let patId;
     const patient = response.data.find((pat) => pat.user.id === id);
@@ -28,7 +30,9 @@ const Login = () => {
     }
   };
   const getDoctorId = async (id) => {
-    const response = await axios("http://127.0.0.1:8000/doctor/list/");
+    const response = await axios(
+      "https://vaccination-management-backend-drf.onrender.com/doctor/list/"
+    );
     console.log(response);
     const doctor = response.data.find((pat) => pat.doctor.id === id);
     if (doctor) {
@@ -49,10 +53,13 @@ const Login = () => {
 
     setIsLoading(true);
     try {
-      const response = await axios.post("http://127.0.0.1:8000/user/login/", {
-        username,
-        password,
-      });
+      const response = await axios.post(
+        "https://vaccination-management-backend-drf.onrender.com/user/login/",
+        {
+          username,
+          password,
+        }
+      );
       if (response.data.token) {
         const pat_id = await getPatientId(response.data.user_id);
         const doc_id = await getDoctorId(response.data.user_id);

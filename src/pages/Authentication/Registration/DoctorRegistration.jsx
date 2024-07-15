@@ -30,7 +30,7 @@ const DoctorRegistration = () => {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/doctor/register/",
+        "https://vaccination-management-backend-drf.onrender.com/doctor/register/",
         data
       );
       console.log(response);

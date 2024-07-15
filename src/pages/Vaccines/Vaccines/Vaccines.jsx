@@ -11,7 +11,7 @@ const Vaccines = () => {
     const fetchVaccines = async () => {
       try {
         const response = await axios(
-          "http://127.0.0.1:8000/vaccine-campaign/list/"
+          "https://vaccination-management-backend-drf.onrender.com/vaccine-campaign/list/"
         );
         console.log(response);
         setVaccines(response.data);
@@ -48,8 +48,7 @@ const Vaccines = () => {
           onClose={handleCloseModal}
         ></VaccineModal>
       )}
-      <div className="my-12">
-        <h1 className="text-2xl font-bold mb-4">Vaccine Campaigns</h1>
+      <div className="my-12 shadow-lg">
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white  border border-gray-300">
             <thead className="bg-gray-200">

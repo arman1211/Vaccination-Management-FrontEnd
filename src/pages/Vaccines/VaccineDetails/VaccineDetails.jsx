@@ -19,7 +19,7 @@ const VaccineDetails = () => {
     const fetchVaccine = async () => {
       console.log("Ok");
       const response = await axios.get(
-        `http://127.0.0.1:8000/vaccine-campaign/lists/${id}`
+        `https://vaccination-management-backend-drf.onrender.com/vaccine-campaign/lists/${id}`
       );
       console.log(response);
       setVaccine(response.data);
@@ -31,7 +31,7 @@ const VaccineDetails = () => {
     const fetchBooking = async () => {
       console.log("Ok");
       const response = await axios.get(
-        `http://127.0.0.1:8000/vaccine-campaign/booking/`
+        `https://vaccination-management-backend-drf.onrender.com/vaccine-campaign/booking/`
       );
       const book = response.data.find(
         (booking) => booking.patient.id == patientId && booking.vaccine.id == id

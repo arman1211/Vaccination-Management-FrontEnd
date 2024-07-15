@@ -14,7 +14,7 @@ const AllVaccineList = () => {
     const fetchUserVaccine = async () => {
       try {
         const response = await axios.get(
-          "http://127.0.0.1:8000/vaccine-campaign/list/"
+          "https://vaccination-management-backend-drf.onrender.com/vaccine-campaign/list/"
         );
         console.log(response);
         if (response.data) {

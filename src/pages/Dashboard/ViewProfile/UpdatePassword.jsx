@@ -17,7 +17,7 @@ const UpdadePassword = ({ onClose, doctor, setMessage }) => {
       setError("Password didnt match");
     }
     const response = await axios.put(
-      `http://127.0.0.1:8000/update-password/${userId}`,
+      `https://vaccination-management-backend-drf.onrender.com/update-password/${userId}`,
       data
     );
     if (response.data) {

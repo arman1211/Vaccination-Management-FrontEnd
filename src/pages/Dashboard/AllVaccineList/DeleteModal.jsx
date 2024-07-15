@@ -6,7 +6,7 @@ const DeleteModal = ({ onClose, id, setVaccines, setMessage }) => {
     e.preventDefault();
     try {
       const response = await axios.delete(
-        `http://127.0.0.1:8000/vaccine-campaign/delete/${id}/`
+        `https://vaccination-management-backend-drf.onrender.com/vaccine-campaign/delete/${id}/`
       );
       console.log(response);
       if (response.status == 204) {

@@ -1,4 +1,5 @@
 import { Component } from "react";
+import img from "../../../assets/vaccine-hero.png";
 
 export class HeroSection extends Component {
   render() {
@@ -38,10 +39,7 @@ export class HeroSection extends Component {
                 </div>
               </div>
               <div className="hidden sm:block sm:w-1/3 lg:w-3/5 relative">
-                <img
-                  src="./src/assets/vaccine-hero.png"
-                  className="max-w-xs md:max-w-sm m-auto"
-                />
+                <img src={img} className="max-w-xs md:max-w-sm m-auto" />
               </div>
             </div>
           </div>

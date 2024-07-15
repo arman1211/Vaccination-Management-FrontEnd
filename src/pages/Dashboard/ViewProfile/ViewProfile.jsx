@@ -14,7 +14,9 @@ const ViewProfile = () => {
     const userId = localStorage.getItem("user_id");
     const fetchUserVaccine = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/doctor/list/");
+        const response = await axios.get(
+          "https://vaccination-management-backend-drf.onrender.com/doctor/list/"
+        );
         if (response.data) {
           const filterVaccine = response.data.find(
             (doctor) => doctor.doctor.id === parseInt(userId)

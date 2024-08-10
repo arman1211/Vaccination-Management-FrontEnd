@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import EditModal from "./EditModal";
 import DeleteModal from "./DeleteModal";
+import { useLocation } from "react-router-dom";
 
 const AllVaccineList = () => {
   const [vaccines, setVaccines] = useState([]);
@@ -9,8 +10,12 @@ const AllVaccineList = () => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [message, setMessage] = useState("");
+  const location = useLocation();
 
   useEffect(() => {
+    if (location.state && location.state.message) {
+      setMessage(location.state.message);
+    }
     const fetchUserVaccine = async () => {
       try {
         const response = await axios.get(
@@ -25,7 +30,7 @@ const AllVaccineList = () => {
       }
     };
     fetchUserVaccine();
-  }, []);
+  }, [location.state]);
   const handleOpenModal = (id) => {
     setVaccineId(id);
     setIsEditModalOpen(true);

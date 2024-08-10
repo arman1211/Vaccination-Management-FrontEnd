@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AddVaccineCampaign = () => {
   let doctor_id = localStorage.getItem("doctor_id");
@@ -8,10 +9,10 @@ const AddVaccineCampaign = () => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [description, setDescription] = useState("");
-  const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [image, setImage] = useState(null);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,8 +37,10 @@ const AddVaccineCampaign = () => {
       );
       console.log(response);
       if (response.data) {
-        setMessage("Vaccine Added Successfully");
         setIsLoading(false);
+        navigate("/dashboard/vaccine-list", {
+          state: { message: "Vaccine Added Successfully" },
+        });
       }
     } catch (error) {
       setError("Please Provide Valid data");
@@ -48,24 +51,6 @@ const AddVaccineCampaign = () => {
 
   return (
     <div className="bg-white border rounded-lg px-8 py-6 mx-auto my-8  w-96">
-      {message && (
-        <div role="alert" className="alert alert-success mt-2">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 shrink-0 stroke-current"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
-          <span>{message}</span>
-        </div>
-      )}
       {error && <p className="text-red-500">{error}</p>}
       <h2 className="text-4xl text-center font-medium text-pink-600">
         Add Vaccine Campaign

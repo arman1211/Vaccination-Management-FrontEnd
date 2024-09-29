@@ -40,7 +40,7 @@ const PatientVaccineList = () => {
 
   return (
     <div className="bg-base-100 shadow-lg p-2  rounded mt-2">
-      <div className="overflow-x-auto">
+      <div className="overflow-x-scroll">
         <h2 className="font-bold text-center text-4xl text-pink-500 mb-6">
           All Patient Vaccine History
         </h2>

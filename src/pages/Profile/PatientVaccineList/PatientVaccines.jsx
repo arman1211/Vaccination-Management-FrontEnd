@@ -78,7 +78,7 @@ const PatientVaccines = () => {
               <th>status</th>
               <th>Schedule</th>
               <th>Review</th>
-              <th>Reports</th>
+              <th>Pdf Reports</th>
             </tr>
           </thead>
           <tbody>
@@ -124,7 +124,7 @@ const PatientVaccines = () => {
                     className="bg-green-700 text-white p-1.5 rounded"
                     to={`https://vaccination-management-backend-drf.onrender.com/vaccine-campaign/vaccine-dose-report/${vaccine.id}`}
                   >
-                    Download Report
+                    Download
                   </Link>
                 </td>
               </tr>

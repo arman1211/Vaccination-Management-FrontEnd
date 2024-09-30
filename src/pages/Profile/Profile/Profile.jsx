@@ -48,9 +48,9 @@ const Profile = () => {
 
   return (
     <>
-      <div className="card lg:card-side bg-base-100 shadow-xl h-96 my-28 w-3/4 m-auto">
+      <div className="card lg:card-side card-compact bg-base-100 shadow-xl md:h-96 h-[640px] my-28 w-3/4 m-auto">
         <figure>
-          <img src={profile} alt="Album" className="w-96" />
+          <img src={profile} alt="Album" className="md:w-96" />
         </figure>
         <div className="card-body">
           <div className="flex items-center space-x-4">

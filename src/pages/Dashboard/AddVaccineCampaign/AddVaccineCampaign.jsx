@@ -14,28 +14,43 @@ const AddVaccineCampaign = () => {
   const [image, setImage] = useState(null);
   const navigate = useNavigate();
 
+  const uploadImageToImageBB = async (imageFile) => {
+    const formData = new FormData();
+    formData.append("image", imageFile);
+
+    try {
+      const response = await axios.post(
+        `https://api.imgbb.com/1/upload?key=337a5c924711eb3e8b4c4b8b849b7962`,
+        formData
+      );
+      return response.data.data.url;
+    } catch (error) {
+      console.error("Image upload failed:", error);
+      throw new Error("Image upload failed");
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = {
-      name: vaccineName,
-      start_date: startDate,
-      end_date: endDate,
-      description: description,
-      created_by: doctor_id,
-      image: image,
-    };
+    setIsLoading(true);
+
     try {
-      setIsLoading(true);
+      const imageUrl = await uploadImageToImageBB(image);
+
+      const data = {
+        name: vaccineName,
+        start_date: startDate,
+        end_date: endDate,
+        description: description,
+        created_by: doctor_id,
+        image: imageUrl,
+      };
+
       const response = await axios.post(
         "https://vaccination-management-backend-drf.vercel.app/vaccine-campaign/list/",
-        data,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
+        data
       );
-      console.log(response);
+
       if (response.data) {
         setIsLoading(false);
         navigate("/dashboard/vaccine-list", {
@@ -43,10 +58,9 @@ const AddVaccineCampaign = () => {
         });
       }
     } catch (error) {
-      setError("Please Provide Valid data");
+      setError("Please provide valid data or try uploading the image again");
       setIsLoading(false);
     }
-    console.log(data);
   };
 
   return (

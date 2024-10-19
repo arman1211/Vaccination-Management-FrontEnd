@@ -20,7 +20,7 @@ const TakeReview = ({ vaccine_id }) => {
     };
     const fetchUser = async () => {
       const response = await axios.post(
-        "https://vaccination-management-backend-drf.onrender.com/vaccine-campaign/review/",
+        "https://vaccination-management-backend-drf.vercel.app/vaccine-campaign/review/",
         data
       );
       console.log(response);

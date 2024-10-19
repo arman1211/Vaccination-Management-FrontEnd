@@ -30,7 +30,7 @@ const DoctorRegistration = () => {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        "https://vaccination-management-backend-drf.onrender.com/doctor/register/",
+        "https://vaccination-management-backend-drf.vercel.app/doctor/register/",
         data
       );
       console.log(response);

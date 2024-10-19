@@ -29,7 +29,7 @@ const VaccineModal = ({ vaccine, onClose }) => {
     const fetchVaccinePost = async () => {
       setIsLoading(true);
       const response = await axios.post(
-        "https://vaccination-management-backend-drf.onrender.com/vaccine-campaign/post/",
+        "https://vaccination-management-backend-drf.vercel.app/vaccine-campaign/post/",
         data
       );
       if (response.data) {

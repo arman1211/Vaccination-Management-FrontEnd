@@ -11,7 +11,7 @@ const Vaccines = () => {
     const fetchVaccines = async () => {
       try {
         const response = await axios(
-          "https://vaccination-management-backend-drf.onrender.com/vaccine-campaign/list/"
+          "https://vaccination-management-backend-drf.vercel.app/vaccine-campaign/list/"
         );
         console.log(response);
         setVaccines(response.data);

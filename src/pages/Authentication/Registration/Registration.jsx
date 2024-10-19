@@ -31,7 +31,7 @@ export const Registration = () => {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        "https://vaccination-management-backend-drf.onrender.com/patient/register/",
+        "https://vaccination-management-backend-drf.vercel.app/patient/register/",
         data
       );
       console.log(response.data);

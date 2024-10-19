@@ -19,7 +19,7 @@ const AllVaccineList = () => {
     const fetchUserVaccine = async () => {
       try {
         const response = await axios.get(
-          "https://vaccination-management-backend-drf.onrender.com/vaccine-campaign/list/"
+          "https://vaccination-management-backend-drf.vercel.app/vaccine-campaign/list/"
         );
         console.log(response);
         if (response.data) {

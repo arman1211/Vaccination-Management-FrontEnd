@@ -12,7 +12,7 @@ const Login = () => {
   const navigate = useNavigate();
   const getPatientId = async (id) => {
     const response = await axios(
-      "https://vaccination-management-backend-drf.onrender.com/patient/list/"
+      "https://vaccination-management-backend-drf.vercel.app/patient/list/"
     );
     console.log(response);
     let patId;
@@ -31,7 +31,7 @@ const Login = () => {
   };
   const getDoctorId = async (id) => {
     const response = await axios(
-      "https://vaccination-management-backend-drf.onrender.com/doctor/list/"
+      "https://vaccination-management-backend-drf.vercel.app/doctor/list/"
     );
     console.log(response);
     const doctor = response.data.find((pat) => pat.doctor.id === id);
@@ -54,7 +54,7 @@ const Login = () => {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        "https://vaccination-management-backend-drf.onrender.com/user/login/",
+        "https://vaccination-management-backend-drf.vercel.app/user/login/",
         {
           username,
           password,

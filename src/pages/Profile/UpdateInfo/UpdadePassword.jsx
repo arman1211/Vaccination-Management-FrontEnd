@@ -17,7 +17,7 @@ const UpdadePassword = ({ onClose, patient, setMessage }) => {
       setError("Password didnt match");
     }
     const response = await axios.put(
-      `https://vaccination-management-backend-drf.onrender.com/update-password/${userId}`,
+      `https://vaccination-management-backend-drf.vercel.app/update-password/${userId}`,
       data
     );
     if (response.data) {

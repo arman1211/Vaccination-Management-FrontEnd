@@ -12,7 +12,7 @@ const EditModal = ({ onClose, id, setVaccines, setMessage }) => {
     const fetchVaccine = async () => {
       try {
         const response = await axios.get(
-          `https://vaccination-management-backend-drf.onrender.com/vaccine-campaign/lists/${id}`
+          `https://vaccination-management-backend-drf.vercel.app/vaccine-campaign/lists/${id}`
         );
         console.log(response);
         if (response.data) {
@@ -46,7 +46,7 @@ const EditModal = ({ onClose, id, setVaccines, setMessage }) => {
     console.log(data);
     try {
       const response = await axios.put(
-        `https://vaccination-management-backend-drf.onrender.com/vaccine-campaign/edit/${id}/`,
+        `https://vaccination-management-backend-drf.vercel.app/vaccine-campaign/edit/${id}/`,
         data
       );
       console.log(response);

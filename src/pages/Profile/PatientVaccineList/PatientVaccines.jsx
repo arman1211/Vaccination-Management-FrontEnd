@@ -13,7 +13,7 @@ const PatientVaccines = () => {
       console.log(vaccineId);
       try {
         const response = await axios.delete(
-          `https://vaccination-management-backend-drf.onrender.com/vaccine-campaign/booking/delete/${vaccineId}`
+          `https://vaccination-management-backend-drf.vercel.app/vaccine-campaign/booking/delete/${vaccineId}`
         );
         console.log(response);
         if (response.status == 204) {
@@ -37,7 +37,7 @@ const PatientVaccines = () => {
     const fetchUserVaccine = async () => {
       try {
         const response = await axios.get(
-          "https://vaccination-management-backend-drf.onrender.com/vaccine-campaign/booking/"
+          "https://vaccination-management-backend-drf.vercel.app/vaccine-campaign/booking/"
         );
         console.log(response);
         if (response.data) {
@@ -122,7 +122,7 @@ const PatientVaccines = () => {
                   <Link
                     target="_blank"
                     className="bg-green-700 text-white p-1.5 rounded"
-                    to={`https://vaccination-management-backend-drf.onrender.com/vaccine-campaign/vaccine-dose-report/${vaccine.id}`}
+                    to={`https://vaccination-management-backend-drf.vercel.app/vaccine-campaign/vaccine-dose-report/${vaccine.id}`}
                   >
                     Download
                   </Link>

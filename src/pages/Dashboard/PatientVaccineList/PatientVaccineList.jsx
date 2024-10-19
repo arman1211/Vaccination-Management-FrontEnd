@@ -7,7 +7,7 @@ const PatientVaccineList = () => {
     const fetchUserVaccine = async () => {
       try {
         const response = await axios.get(
-          "https://vaccination-management-backend-drf.onrender.com/vaccine-campaign/booking/"
+          "https://vaccination-management-backend-drf.vercel.app/vaccine-campaign/booking/"
         );
         console.log(response);
         if (response.data) {
@@ -22,7 +22,7 @@ const PatientVaccineList = () => {
   const handleCompleteDose = async (id) => {
     try {
       const response = await axios.put(
-        `https://vaccination-management-backend-drf.onrender.com/vaccine-campaign/complete/${id}/`,
+        `https://vaccination-management-backend-drf.vercel.app/vaccine-campaign/complete/${id}/`,
         { is_completed: true }
       );
 

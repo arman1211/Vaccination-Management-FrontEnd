@@ -6,7 +6,7 @@ const ReviewsSlide = () => {
   useEffect(() => {
     const fetchReviews = async () => {
       const response = await axios(
-        "https://vaccination-management-backend-drf.onrender.com/vaccine-campaign/review/"
+        "https://vaccination-management-backend-drf.vercel.app/vaccine-campaign/review/"
       );
       if (response.data) {
         console.log(response.data);

@@ -37,7 +37,7 @@ const UpdateInfo = ({ isOpen, doctor, onClose, setDoctor, setMessage }) => {
       nid: formData.nid,
     };
     const response = await axios.put(
-      `https://vaccination-management-backend-drf.onrender.com/doctor/update-doctor/${doctor.id}`,
+      `https://vaccination-management-backend-drf.vercel.app/doctor/update-doctor/${doctor.id}`,
       data
     );
     console.log(response);

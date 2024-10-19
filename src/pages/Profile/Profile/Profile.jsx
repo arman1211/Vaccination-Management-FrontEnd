@@ -16,7 +16,7 @@ const Profile = () => {
     const fetchUserVaccine = async () => {
       try {
         const response = await axios.get(
-          "https://vaccination-management-backend-drf.onrender.com/patient/list/"
+          "https://vaccination-management-backend-drf.vercel.app/patient/list/"
         );
         if (response.data) {
           const filterVaccine = response.data.find(

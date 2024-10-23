@@ -110,7 +110,7 @@ const VaccineDetails = () => {
       <hr />
       <VaccineReview vaccine={vaccine}></VaccineReview>
       <hr />
-      <div className="patient-reviews min-h-96 m-24">
+      <div className="patient-reviews min-h-96 my-24 mx-12">
         <h2 className="text-pink-500 text-center text-3xl font-bold">
           Give Review
         </h2>

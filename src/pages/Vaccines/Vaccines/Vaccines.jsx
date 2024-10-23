@@ -37,7 +37,7 @@ const Vaccines = () => {
       <h1 className="text-4xl text-pink-500 my-16 font-bold mb-4 stylish-regular text-center">
         All Vaccine Campaigns
       </h1>
-      <div className="mx-auto w-4/5 md:w-full vaccines-container grid md:grid-cols-3 sm:grid-cols-1 xs:grid-cols-1 gap-10 flex-wrap space-y-5">
+      <div className="mx-auto w-5/6 md:w-full vaccines-container grid md:grid-cols-3 sm:grid-cols-1 xs:grid-cols-1 gap-10 flex-wrap space-y-5">
         {loading ? (
           <div className="flex justify-center items-center ">
             <div className="w-16 h-16 border-4  border-dashed rounded-full animate-spin border-pink-500"></div>

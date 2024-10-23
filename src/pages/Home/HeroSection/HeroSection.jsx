@@ -10,9 +10,9 @@ export class HeroSection extends Component {
             <div className="container mx-auto px-6 flex relative py-16">
               <div className="sm:w-2/3 lg:w-2/5 flex flex-col relative z-20">
                 <span className="w-20 h-2 bg-pink-500  mb-12"></span>
-                <h1 className="font-bebas-neue uppercase text-6xl sm:text-6xl font-black flex flex-col leading-none  text-gray-800">
+                <h1 className="font-bebas-neue uppercase text-4xl sm:text-5xl md:text-6xl font-black flex flex-col leading-none  text-gray-800">
                   Streamlined Vaccination
-                  <span className="text-5xl sm:text-3xl my-3 text-pink-500">
+                  <span className="text-3xl sm:text-5xl my-3 text-pink-500">
                     Scheduling and Tracking
                   </span>
                 </h1>

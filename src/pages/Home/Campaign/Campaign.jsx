@@ -45,7 +45,7 @@ const Campaign = () => {
                   </a>
                 )}
               </div>
-              <div className="flex flex-wrap mx-auto w-4/5 md:w-full">
+              <div className="flex flex-wrap mx-auto md:w-full">
                 {vaccines.slice(0, 4).map((vaccine) => (
                   <div
                     key={vaccine.id}

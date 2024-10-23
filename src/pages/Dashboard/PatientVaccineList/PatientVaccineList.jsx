@@ -3,17 +3,21 @@ import { useEffect, useState } from "react";
 
 const PatientVaccineList = () => {
   const [vaccines, setVaccines] = useState([]);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     const fetchUserVaccine = async () => {
+      setLoading(true);
       try {
         const response = await axios.get(
           "https://vaccination-management-backend-drf.vercel.app/vaccine-campaign/booking/"
         );
         console.log(response);
         if (response.data) {
+          setLoading(false);
           setVaccines(response.data);
         }
       } catch (error) {
+        setLoading(false);
         console.log("something wrong");
       }
     };
@@ -44,47 +48,53 @@ const PatientVaccineList = () => {
         <h2 className="font-bold text-center text-4xl text-pink-500 mb-6">
           All Patient Vaccine History
         </h2>
-        <table className="table table-lg">
-          <thead>
-            <tr className="font-bold text-sm">
-              <th>No.</th>
-              <th>Vaccine Name</th>
-              <th>Patient Name</th>
-              <th>Start Date</th>
-              <th>End Date</th>
-              <th>Patient first dose</th>
-              <th>Patient second dose</th>
-              <th>Complete dose</th>
-            </tr>
-          </thead>
-          <tbody>
-            {vaccines.map((vaccine) => (
-              <tr key={vaccine.id}>
-                <th>{vaccine.id}</th>
-                <td>{vaccine.vaccine.name}</td>
-                <td>{vaccine.patient.user.username}</td>
-                <td>{vaccine.vaccine.start_date}</td>
-                <td>{vaccine.vaccine.end_date}</td>
-                <td>{vaccine.first_dose_date}</td>
-                <td>{vaccine.second_dose_date}</td>
-                <td>
-                  {vaccine.is_completed ? (
-                    <button className="btn btn-sm bg-green-500 text-white hover:text-black">
-                      Completed
-                    </button>
-                  ) : (
-                    <button
-                      onClick={() => handleCompleteDose(vaccine.id)}
-                      className="btn btn-sm bg-pink-500 text-white hover:text-black"
-                    >
-                      Complete Dose
-                    </button>
-                  )}
-                </td>
+        {loading ? (
+          <div className="flex justify-center items-center ">
+            <div className="w-16 h-16 border-4  border-dashed rounded-full animate-spin border-pink-500"></div>
+          </div>
+        ) : (
+          <table className="table table-lg">
+            <thead>
+              <tr className="font-bold text-sm">
+                <th>No.</th>
+                <th>Vaccine Name</th>
+                <th>Patient Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Patient first dose</th>
+                <th>Patient second dose</th>
+                <th>Complete dose</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {vaccines.map((vaccine) => (
+                <tr key={vaccine.id}>
+                  <th>{vaccine.id}</th>
+                  <td>{vaccine.vaccine.name}</td>
+                  <td>{vaccine.patient.user.username}</td>
+                  <td>{vaccine.vaccine.start_date}</td>
+                  <td>{vaccine.vaccine.end_date}</td>
+                  <td>{vaccine.first_dose_date}</td>
+                  <td>{vaccine.second_dose_date}</td>
+                  <td>
+                    {vaccine.is_completed ? (
+                      <button className="btn btn-sm bg-green-500 text-white hover:text-black">
+                        Completed
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => handleCompleteDose(vaccine.id)}
+                        className="btn btn-sm bg-pink-500 text-white hover:text-black"
+                      >
+                        Complete Dose
+                      </button>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
     </div>
   );

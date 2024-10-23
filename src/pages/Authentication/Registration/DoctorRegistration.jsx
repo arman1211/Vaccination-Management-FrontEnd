@@ -68,168 +68,191 @@ const DoctorRegistration = () => {
           </p>
         </div>
 
-        <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-          <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+        <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-2xl">
+          <div className="bg-white py-8 px-6 shadow sm:rounded-lg sm:px-10">
             <form method="POST" action="#" onSubmit={handleRegistration}>
-              <div className="mt-6">
-                <label
-                  htmlFor="username"
-                  className="block text-sm font-medium leading-5 text-gray-700"
-                >
-                  Username
-                </label>
-                <div className="mt-1 flex rounded-md shadow-sm">
-                  <input
-                    id="username"
-                    name="username"
-                    placeholder="john"
-                    type="text"
-                    required
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 "
-                  />
-                </div>
-              </div>
-              <div className="mt-6">
-                <label className="block text-sm font-medium leading-5 text-gray-700">
-                  Phone
-                </label>
-                <div className="mt-1 flex rounded-md shadow-sm">
-                  <input
-                    id="phone"
-                    name="phone"
-                    placeholder="018000000000"
-                    type="text"
-                    required
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 "
-                  />
-                </div>
-              </div>
-              <div className="mt-6">
-                <label
-                  htmlFor="nid"
-                  className="block text-sm font-medium leading-5 text-gray-700"
-                >
-                  Nid
-                </label>
-                <div className="mt-1 flex rounded-md shadow-sm">
-                  <input
-                    id="nid"
-                    name="nid"
-                    placeholder="123456....."
-                    type="text"
-                    required
-                    value={nid}
-                    onChange={(e) => setNid(e.target.value)}
-                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 "
-                  />
-                </div>
-              </div>
-              <div className="mt-6">
-                <label
-                  htmlFor="address"
-                  className="block text-sm font-medium leading-5 text-gray-700"
-                >
-                  Address
-                </label>
-                <div className="mt-1 flex rounded-md shadow-sm">
-                  <input
-                    id="address"
-                    name="address"
-                    placeholder="City-village"
-                    type="text"
-                    required
-                    value={address}
-                    onChange={(e) => setAddress(e.target.value)}
-                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 "
-                  />
-                </div>
-              </div>
-
-              <div className="mt-6">
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium leading-5  text-gray-700"
-                >
-                  Email address
-                </label>
-                <div className="mt-1 relative rounded-md shadow-sm">
-                  <input
-                    id="email"
-                    name="email"
-                    placeholder="user@example.com"
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5
-                  "
-                  />
-                </div>
-              </div>
-
-              <div className="mt-6">
-                <label
-                  htmlFor="password"
-                  className="block text-sm font-medium leading-5 text-gray-700"
-                >
-                  Password
-                </label>
-                <div className="mt-1 rounded-md shadow-sm">
-                  <input
-                    id="password"
-                    name="password"
-                    type="password"
-                    required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-                  />
-                </div>
-              </div>
-
-              <div className="mt-6">
-                <label
-                  htmlFor="password_confirmation"
-                  className="block text-sm font-medium leading-5 text-gray-700"
-                >
-                  Confirm Password
-                </label>
-                <div className="mt-1 rounded-md shadow-sm">
-                  <input
-                    id="password_confirmation"
-                    name="password_confirmation"
-                    type="password"
-                    required
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-                  />
-                </div>
-              </div>
-
-              <div className="mt-6">
-                <span className="block w-full rounded-md shadow-sm">
-                  <button
-                    type="submit"
-                    className="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out"
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <label
+                    htmlFor="username"
+                    className="block text-sm font-medium leading-5 text-gray-700"
                   >
-                    {isLoading ? (
-                      <span className="loading loading-dots loading-sm"></span>
-                    ) : (
-                      "Create account"
-                    )}
-                  </button>
-                </span>
+                    Username
+                  </label>
+                  <div className="mt-1">
+                    <input
+                      id="username"
+                      name="username"
+                      placeholder="john"
+                      type="text"
+                      required
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
+                      className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 sm:text-sm"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="department"
+                    className="block text-sm font-medium leading-5 text-gray-700"
+                  >
+                    Department
+                  </label>
+                  <div className="mt-1">
+                    <input
+                      id="department"
+                      name="department"
+                      placeholder="Cardiology"
+                      type="text"
+                      className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 sm:text-sm"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label
+                    htmlFor="phone"
+                    className="block text-sm font-medium leading-5 text-gray-700"
+                  >
+                    Phone
+                  </label>
+                  <div className="mt-1">
+                    <input
+                      id="phone"
+                      name="phone"
+                      placeholder="018000000000"
+                      type="text"
+                      required
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 sm:text-sm"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="nid"
+                    className="block text-sm font-medium leading-5 text-gray-700"
+                  >
+                    NID
+                  </label>
+                  <div className="mt-1">
+                    <input
+                      id="nid"
+                      name="nid"
+                      placeholder="123456....."
+                      type="text"
+                      required
+                      value={nid}
+                      onChange={(e) => setNid(e.target.value)}
+                      className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 sm:text-sm"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="address"
+                    className="block text-sm font-medium leading-5 text-gray-700"
+                  >
+                    Address
+                  </label>
+                  <div className="mt-1">
+                    <input
+                      id="address"
+                      name="address"
+                      placeholder="City-village"
+                      type="text"
+                      required
+                      value={address}
+                      onChange={(e) => setAddress(e.target.value)}
+                      className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 sm:text-sm"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium leading-5 text-gray-700"
+                  >
+                    Email Address
+                  </label>
+                  <div className="mt-1">
+                    <input
+                      id="email"
+                      name="email"
+                      placeholder="user@example.com"
+                      type="email"
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 sm:text-sm"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="password"
+                    className="block text-sm font-medium leading-5 text-gray-700"
+                  >
+                    Password
+                  </label>
+                  <div className="mt-1">
+                    <input
+                      id="password"
+                      name="password"
+                      type="password"
+                      required
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 sm:text-sm"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="password_confirmation"
+                    className="block text-sm font-medium leading-5 text-gray-700"
+                  >
+                    Confirm Password
+                  </label>
+                  <div className="mt-1">
+                    <input
+                      id="password_confirmation"
+                      name="password_confirmation"
+                      type="password"
+                      required
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 sm:text-sm"
+                    />
+                  </div>
+                </div>
               </div>
+
+              <div className="mt-8">
+                <button
+                  type="submit"
+                  className="w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 transition duration-150 ease-in-out"
+                >
+                  {isLoading ? (
+                    <span className="loading loading-dots loading-sm"></span>
+                  ) : (
+                    "Create Account"
+                  )}
+                </button>
+              </div>
+
               {message && (
-                <div role="alert" className="alert alert-warning mt-2">
+                <div role="alert" className="alert alert-success mt-4">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6 shrink-0 stroke-current"
+                    className="h-6 w-6 shrink-0 stroke-current mr-2"
                     fill="none"
                     viewBox="0 0 24 24"
                   >
@@ -241,8 +264,11 @@ const DoctorRegistration = () => {
                     />
                   </svg>
                   <span>{message}</span>
-                  {error && <span>{error}</span>}
                 </div>
+              )}
+
+              {error && (
+                <div className="text-red-500 text-sm mt-2">{error}</div>
               )}
             </form>
           </div>

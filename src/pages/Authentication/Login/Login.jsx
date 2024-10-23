@@ -69,12 +69,13 @@ const Login = () => {
         localStorage.setItem("user_id", response.data.user_id);
         if (pat_id) {
           localStorage.setItem("patient_id", parseInt(pat_id));
+          setIsLoading(false);
+          navigate("/");
         } else {
           localStorage.setItem("doctor_id", parseInt(doc_id));
+          setIsLoading(false);
+          navigate("/dashboard");
         }
-
-        setIsLoading(false);
-        navigate("/");
       } else {
         setError(response.data.error);
         setIsLoading(false);
@@ -94,11 +95,11 @@ const Login = () => {
             src="https://www.svgrepo.com/show/301692/login.svg"
             alt="Workflow"
           />
-          <h2 className="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
+          <h2 className="mt-6 text-center text-3xl text-pink-600 leading-9 font-extrabold text-gray-900">
             Login to your account
           </h2>
           <p className="mt-2 text-center text-sm leading-5 text-gray-500 max-w">
-            Or
+            Or-
             <Link
               to={"/register"}
               className="font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:underline transition ease-in-out duration-150"
@@ -157,7 +158,7 @@ const Login = () => {
                   <button
                     type="submit"
                     disabled={isLoading}
-                    className="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out"
+                    className="w-full flex bg-pink-600 justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white  hover:bg-pink-500 focus:outline-none focus:border-pink-700 focus:shadow-outline-indigo active:bg-pink-700 transition duration-150 ease-in-out"
                   >
                     {isLoading ? "Logging in..." : "Login"}
                   </button>
@@ -166,6 +167,17 @@ const Login = () => {
               </div>
             </form>
           </div>
+        </div>
+        <div
+          className="bg-blue-100 w-[300px] mx-auto mt-5 border-l-4 border-pink-500 text-pink-700 p-4 mb-6"
+          role="alert"
+        >
+          <p className="font-bold">Sample Patient Credentials</p>
+          <p>Username: patient</p>
+          <p>Password: asas1212</p>
+          <p className="font-bold">Sample Doctor Credentials</p>
+          <p>Username: doctor</p>
+          <p>Password: asas1212</p>
         </div>
       </div>
     </div>

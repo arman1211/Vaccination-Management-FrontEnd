@@ -32,7 +32,11 @@ const ViewProfile = () => {
   }, []);
 
   if (!doctor) {
-    return <span className="loading loading-bars loading-lg mx-auto"></span>;
+    return (
+      <div className="flex justify-center items-center ">
+        <div className="w-16 h-16 border-4  border-dashed rounded-full animate-spin border-pink-500"></div>
+      </div>
+    );
   }
 
   const handleUpdateClick = () => {

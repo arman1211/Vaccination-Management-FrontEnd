@@ -25,16 +25,16 @@ const ContactUs = () => {
               </div>
               <div className="w-full flex-col justify-center items-start gap-6 flex">
                 <div className="w-full justify-start items-center gap-8 grid md:grid-cols-2 grid-cols-1">
-                  <div className="w-full h-full p-3.5 rounded-xl border border-gray-200 hover:border-gray-400 transition-all duration-700 ease-in-out flex-col justify-start items-start gap-2.5 inline-flex">
-                    <h4 className="text-gray-900 text-2xl font-bold font-manrope leading-9">
+                  <div className="w-full bg-card1 h-full p-3.5 rounded-xl border border-gray-200 hover:border-gray-400 transition-all duration-700 ease-in-out flex-col justify-start items-start gap-2.5 inline-flex">
+                    <h4 className="text-pink-700 text-2xl font-bold font-manrope leading-9">
                       5+ Years
                     </h4>
                     <p className="text-gray-500 text-base font-normal leading-relaxed">
                       Promoting Public Health
                     </p>
                   </div>
-                  <div className="w-full h-full p-3.5 rounded-xl border border-gray-200 hover:border-gray-400 transition-all duration-700 ease-in-out flex-col justify-start items-start gap-2.5 inline-flex">
-                    <h4 className="text-gray-900 text-2xl font-bold font-manrope leading-9">
+                  <div className="w-full bg-card2 h-full p-3.5 rounded-xl border border-gray-200 hover:border-gray-400 transition-all duration-700 ease-in-out flex-col justify-start items-start gap-2.5 inline-flex">
+                    <h4 className="text-pink-700 text-2xl font-bold font-manrope leading-9">
                       50+ Clinics
                     </h4>
                     <p className="text-gray-500 text-base font-normal leading-relaxed">
@@ -43,16 +43,16 @@ const ContactUs = () => {
                   </div>
                 </div>
                 <div className="w-full h-full justify-start items-center gap-8 grid md:grid-cols-2 grid-cols-1">
-                  <div className="w-full p-3.5 rounded-xl border border-gray-200 hover:border-gray-400 transition-all duration-700 ease-in-out flex-col justify-start items-start gap-2.5 inline-flex">
-                    <h4 className="text-gray-900 text-2xl font-bold font-manrope leading-9">
+                  <div className="w-full bg-card3 p-3.5 rounded-xl border border-gray-200 hover:border-gray-400 transition-all duration-700 ease-in-out flex-col justify-start items-start gap-2.5 inline-flex">
+                    <h4 className="text-pink-700 text-2xl font-bold font-manrope leading-9">
                       10+ Awards
                     </h4>
                     <p className="text-gray-500 text-base font-normal leading-relaxed">
                       Recognized for Excellence in Public Health
                     </p>
                   </div>
-                  <div className="w-full h-full p-3.5 rounded-xl border border-gray-200 hover:border-gray-400 transition-all duration-700 ease-in-out flex-col justify-start items-start gap-2.5 inline-flex">
-                    <h4 className="text-gray-900 text-2xl font-bold font-manrope leading-9">
+                  <div className="w-full bg-card4 h-full p-3.5 rounded-xl border border-gray-200 hover:border-gray-400 transition-all duration-700 ease-in-out flex-col justify-start items-start gap-2.5 inline-flex">
+                    <h4 className="text-pink-700 text-2xl font-bold font-manrope leading-9">
                       99% Satisfaction
                     </h4>
                     <p className="text-gray-500 text-base font-normal leading-relaxed">

@@ -9,7 +9,7 @@ export class Services extends Component {
         <h2 className="stylish-regular text-5xl  text-pink-500 text-center font-bold">
           Our Services...
         </h2>
-        <div className="w-full mx-auto p-10 mt-5 bg-gray-50">
+        <div className="w-full mx-auto p-10 mt-5 ">
           <div className="w-fit pb-1 px-2 mx-4 rounded-md text-2xl font-semibold border-b-2 border-pink-500">
             Services
           </div>
@@ -22,7 +22,7 @@ export class Services extends Component {
                 alt="billboard image"
               />
             </div>
-            <div className="lg:w-[50%] sm:w-full xs:w-full bg-gray-100 md:p-4 xs:p-4 rounded-md">
+            <div className="lg:w-[50%] p-2 bg-card1 sm:w-full xs:w-full  md:p-4 xs:p-4 rounded-md">
               <h2 className="text-3xl font-semibold text-pink-900">
                 Comprehensive Vaccination Management
               </h2>
@@ -45,8 +45,8 @@ export class Services extends Component {
               />
             </div>
 
-            <div className="lg:w-[50%] xs:w-full bg-gray-100 md:p-4 xs:p-4 rounded-md">
-              <h2 className="text-3xl font-semibold text-pink-900">
+            <div className="lg:w-[50%] p-2 xs:w-full bg-card4 md:p-4 xs:p-4 rounded-md">
+              <h2 className="text-3xl  font-semibold text-pink-900">
                 Automated Appointment Scheduling
               </h2>
 

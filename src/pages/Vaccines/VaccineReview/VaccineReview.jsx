@@ -28,7 +28,7 @@ const VaccineReview = ({ vaccine }) => {
           What Patient Are Saying
         </h2>
         {reviews && (
-          <div className="grid md:grid-cols-3 lg:grid-cols-4 sm:grid-cols-2 xs:grid-cols-1 gap-3 flex-wrap space-y-4 md:space-y-0  relative">
+          <div className="mx-auto w-4/5 md:w-full grid md:grid-cols-3 lg:grid-cols-4 sm:grid-cols-2 xs:grid-cols-1 gap-3 flex-wrap space-y-4 md:space-y-0  relative">
             {reviews.map((review) => (
               <div key={review.id} className="">
                 <div className="hover:animate-background rounded-xl bg-gradient-to-r from-pink-400 to-pink-500 p-0.5 shadow-xl transition hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s]">

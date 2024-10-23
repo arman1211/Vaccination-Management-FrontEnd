@@ -7,6 +7,7 @@ const PatientVaccines = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [vaccines, setVaccines] = useState([]);
   const [vaccineId, setVaccineId] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [deletePermission, setDeletePermission] = useState(false);
   useEffect(() => {
     const deleteDoseBooking = async () => {
@@ -35,6 +36,7 @@ const PatientVaccines = () => {
   useEffect(() => {
     const userId = localStorage.getItem("user_id");
     const fetchUserVaccine = async () => {
+      setLoading(true);
       try {
         const response = await axios.get(
           "https://vaccination-management-backend-drf.vercel.app/vaccine-campaign/booking/"
@@ -45,10 +47,12 @@ const PatientVaccines = () => {
             (vaccine) => vaccine.patient.user.id === parseInt(userId)
           );
           console.log(filterVaccine);
+          setLoading(false);
           setVaccines(filterVaccine);
           console.log(filterVaccine);
         }
       } catch (error) {
+        setLoading(false);
         console.log("something wrong");
       }
     };
@@ -63,83 +67,89 @@ const PatientVaccines = () => {
   };
   return (
     <div>
-      <div className="overflow-x-auto m-12  bg-base-100 shadow-md rounded">
-        <h2 className="font-bold text-center text-4xl text-pink-500 mb-6">
-          Your all Vaccine History
-        </h2>
-        <table className="table table-sm">
-          <thead>
-            <tr className="font-bold text-lg">
-              <th>No.</th>
-              <th>Vaccine Name</th>
+      {loading ? (
+        <div className="flex justify-center items-center ">
+          <div className="w-16 h-16 border-4  border-dashed rounded-full animate-spin border-pink-500"></div>
+        </div>
+      ) : (
+        <div className="overflow-x-auto m-12  bg-base-100 shadow-md rounded">
+          <h2 className="font-bold text-center text-4xl text-pink-500 mb-6">
+            Your all Vaccine History
+          </h2>
+          <table className="table table-sm">
+            <thead>
+              <tr className="font-bold text-lg">
+                <th>No.</th>
+                <th>Vaccine Name</th>
 
-              <th>Your first dose</th>
-              <th>Second dose date</th>
-              <th>status</th>
-              <th>Schedule</th>
-              <th>Review</th>
-              <th>Pdf Reports</th>
-            </tr>
-          </thead>
-          <tbody>
-            {vaccines.map((vaccine) => (
-              <tr key={vaccine.id}>
-                <th>{vaccine.id}</th>
-                <td>{vaccine.vaccine.name}</td>
-                <td>{vaccine.first_dose_date}</td>
-                <td>{vaccine.second_dose_date}</td>
-                {vaccine.is_completed ? (
-                  <td className="text-success font-bold">Completed ✅</td>
-                ) : (
-                  <td className="text-warning font-bold">Pending ⌛</td>
-                )}
-                {vaccine.is_completed ? (
-                  <td>
-                    <Link className="bg-green-700 text-white p-1.5 rounded">
-                      Done ✅
-                    </Link>
-                  </td>
-                ) : (
+                <th>Your first dose</th>
+                <th>Second dose date</th>
+                <th>status</th>
+                <th>Schedule</th>
+                <th>Review</th>
+                <th>Pdf Reports</th>
+              </tr>
+            </thead>
+            <tbody>
+              {vaccines.map((vaccine) => (
+                <tr key={vaccine.id}>
+                  <th>{vaccine.id}</th>
+                  <td>{vaccine.vaccine.name}</td>
+                  <td>{vaccine.first_dose_date}</td>
+                  <td>{vaccine.second_dose_date}</td>
+                  {vaccine.is_completed ? (
+                    <td className="text-success font-bold">Completed ✅</td>
+                  ) : (
+                    <td className="text-warning font-bold">Pending ⌛</td>
+                  )}
+                  {vaccine.is_completed ? (
+                    <td>
+                      <Link className="bg-green-700 text-white p-1.5 rounded">
+                        Done ✅
+                      </Link>
+                    </td>
+                  ) : (
+                    <td>
+                      <Link
+                        className="btn btn-sm bg-pink-900 text-white hover:text-black"
+                        onClick={() => handleOpenModal(vaccine.id)}
+                      >
+                        Cancel
+                      </Link>
+                    </td>
+                  )}
+
                   <td>
                     <Link
-                      className="btn btn-sm bg-pink-900 text-white hover:text-black"
-                      onClick={() => handleOpenModal(vaccine.id)}
+                      to={`/vaccine-campaign/details/${vaccine.vaccine.id}`}
+                      className="btn btn-sm bg-pink-500 text-white hover:text-black"
                     >
-                      Cancel
+                      Review
                     </Link>
                   </td>
-                )}
-
-                <td>
-                  <Link
-                    to={`/vaccine-campaign/details/${vaccine.vaccine.id}`}
-                    className="btn btn-sm bg-pink-500 text-white hover:text-black"
-                  >
-                    Review
-                  </Link>
-                </td>
-                <td>
-                  <Link
-                    target="_blank"
-                    className="bg-green-700 text-white p-1.5 rounded"
-                    to={`https://vaccination-management-backend-drf.vercel.app/vaccine-campaign/vaccine-dose-report/${vaccine.id}`}
-                  >
-                    Download
-                  </Link>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        {modalOpen && (
-          <CancelAppointmentModal
-            handleOpenModal={handleOpenModal}
-            onClose={handleCloseModal}
-            id={vaccineId}
-            setDeletePermission={setDeletePermission}
-          ></CancelAppointmentModal>
-        )}
-      </div>
+                  <td>
+                    <Link
+                      target="_blank"
+                      className="bg-green-700 text-white p-1.5 rounded"
+                      to={`https://vaccination-management-backend-drf.vercel.app/vaccine-campaign/vaccine-dose-report/${vaccine.id}`}
+                    >
+                      Download
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          {modalOpen && (
+            <CancelAppointmentModal
+              handleOpenModal={handleOpenModal}
+              onClose={handleCloseModal}
+              id={vaccineId}
+              setDeletePermission={setDeletePermission}
+            ></CancelAppointmentModal>
+          )}
+        </div>
+      )}
     </div>
   );
 };

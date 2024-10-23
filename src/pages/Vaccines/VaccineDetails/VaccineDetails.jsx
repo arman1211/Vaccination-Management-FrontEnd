@@ -46,7 +46,9 @@ const VaccineDetails = () => {
 
   if (!vaccine) {
     return (
-      <span className="loading loading-spinner loading-lg mx-auto ml-20 h-screen"></span>
+      <div className="flex justify-center min-h-[520px] items-center ">
+        <div className="w-16 h-16 border-4  border-dashed rounded-full animate-spin border-pink-500"></div>
+      </div>
     );
   }
   const handleOpenModal = () => {
@@ -59,7 +61,7 @@ const VaccineDetails = () => {
 
   return (
     <div>
-      <div className="bg-white shadow-xl rounded-lg overflow-hidden my-5 max-w-3xl mx-auto">
+      <div className="bg-white w-4/5 md:w-full shadow-xl rounded-lg overflow-hidden my-5 max-w-3xl mx-auto">
         <figure className="w-full">
           <img
             className="w-full h-64 object-cover"

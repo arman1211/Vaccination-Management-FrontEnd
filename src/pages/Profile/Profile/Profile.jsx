@@ -10,10 +10,12 @@ const Profile = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const userId = localStorage.getItem("user_id");
     const fetchUserVaccine = async () => {
+      setLoading(true);
       try {
         const response = await axios.get(
           "https://vaccination-management-backend-drf.vercel.app/patient/list/"
@@ -23,6 +25,7 @@ const Profile = () => {
             (patient) => patient.user.id === parseInt(userId)
           );
           setPatient(filterVaccine);
+          setLoading(false);
         }
       } catch (error) {
         console.log("something wrong");
@@ -31,8 +34,12 @@ const Profile = () => {
     fetchUserVaccine();
   }, []);
 
-  if (!patient) {
-    return <span className="loading loading-bars loading-lg mx-auto"></span>;
+  if (loading) {
+    return (
+      <div className="flex justify-center min-h-[520px] items-center ">
+        <div className="w-16 h-16 border-4  border-dashed rounded-full animate-spin border-pink-500"></div>
+      </div>
+    );
   }
   const handleUpdateClick = () => {
     setIsModalOpen(true);
@@ -56,30 +63,32 @@ const Profile = () => {
           <div className="flex items-center space-x-4">
             <div>
               <h2 className="text-5xl font-bold text-pink-500">
-                {patient.user.username}
+                {patient && patient.user.username}
               </h2>
-              <p className="text-sm text-gray-600">{patient.user.email}</p>
+              <p className="text-sm text-gray-600 mt-1">
+                {patient && patient.user.email}
+              </p>
             </div>
           </div>
           <div className="mt-4">
             <h3 className="text-xl font-semibold">Contact Information</h3>
             <p className="mt-2 text-gray-700">
-              <strong>Address:</strong> {patient.address}
+              <strong>Address:</strong> {patient && patient.address}
             </p>
             <p className="mt-2 text-gray-700">
-              <strong>Phone:</strong> {patient.phone}
+              <strong>Phone:</strong> {patient && patient.phone}
             </p>
             <p className="mt-2 text-gray-700">
-              <strong>NID:</strong> {patient.nid}
+              <strong>NID:</strong> {patient && patient.nid}
             </p>
             <button
-              className="btn btn-neutral btn-sm mt-4"
+              className="btn btn-neutral btn-sm mt-4 w-full sm:w-auto"
               onClick={handleUpdateClick}
             >
               Update Info
             </button>
             <button
-              className="btn btn-neutral btn-sm ml-4"
+              className="btn btn-neutral btn-sm mt-2 sm:mt-0 w-full sm:w-auto sm:ml-1 lg:ml-4"
               onClick={handlePasswordUpdateClick}
             >
               Change Password
@@ -123,7 +132,13 @@ const Profile = () => {
           setMessage={setMessage}
         ></UpdadePassword>
       )}
-      <PatientVaccines></PatientVaccines>
+      {loading ? (
+        <div className="flex justify-center items-center ">
+          <div className="w-16 h-16 border-4  border-dashed rounded-full animate-spin border-pink-500"></div>
+        </div>
+      ) : (
+        <PatientVaccines></PatientVaccines>
+      )}
     </>
   );
 };

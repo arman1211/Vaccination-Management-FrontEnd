@@ -35,7 +35,7 @@ const ReviewsSlide = () => {
           </div>
         ) : (
           <div className="swiper mySwiper">
-            <div className="swiper-wrapper grid md:grid-cols-3 lg:grid-cols-4 xs:grid-cols-1 gap-3">
+            <div className="swiper-wrapper mx-auto w-4/5 md:w-full grid md:grid-cols-3 lg:grid-cols-4 xs:grid-cols-1 gap-3">
               {reviews.map((review) => (
                 <div key={review.id} className="swiper-slide">
                   <div className="group bg-white border border-solid border-gray-300 rounded-xl p-6 transition-all duration-500 w-full mx-auto hover:border-pink-500 hover:shadow slide_active:border-indigo-600">

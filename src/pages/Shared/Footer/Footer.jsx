@@ -64,7 +64,7 @@ class Footer extends Component {
                   <input
                     type="text"
                     placeholder="username@site.com"
-                    className="input input-bordered join-item"
+                    className="input w-full xs:w-1/2 sm:w-1/3 input-bordered join-item"
                   />
                   <button className="btn bg-pink-500 join-item text-white">
                     Subscribe

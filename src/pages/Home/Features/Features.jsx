@@ -7,7 +7,7 @@ export class Features extends Component {
         <h2 className="stylish-regular text-5xl mt-24 text-pink-500 text-center font-bold">
           Features we provide
         </h2>
-        <div className="mb-32 flex items-center justify-center">
+        <div className="mb-32 flex mx-auto w-4/5 md:w-full items-center justify-center">
           <div className="m-auto w-full pt-12 p-4">
             <div className="grid gap-14 md:grid-cols-3 md:gap-5">
               <div className="rounded-xl bg-white p-6 text-center shadow-xl">

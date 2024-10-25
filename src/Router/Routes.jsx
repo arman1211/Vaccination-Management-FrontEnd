@@ -14,6 +14,9 @@ import AddVaccineCampaign from "../pages/Dashboard/AddVaccineCampaign/AddVaccine
 import PatientVaccineList from "../pages/Dashboard/PatientVaccineList/PatientVaccineList";
 import AllVaccineList from "../pages/Dashboard/AllVaccineList/AllVaccineList";
 import ContactUs from "../pages/ContactUs/ContactUs";
+import DoctorDashboard from "../pages/DoctorDashboard/DoctorDashboard/DoctorDashboard";
+import DashHome from "../pages/Dashboard/DashHome/DashHome";
+import Chart from "../pages/Dashboard/Chart/Chart";
 
 export const router = createBrowserRouter([
   {
@@ -76,6 +79,40 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/vaccine-list",
+        element: <PrivateRoute element={<AllVaccineList></AllVaccineList>} />,
+      },
+    ],
+  },
+  {
+    path: "/doctor-dashboard",
+    element: <DoctorDashboard></DoctorDashboard>,
+    children: [
+      {
+        path: "/doctor-dashboard/home",
+        element: <PrivateRoute element={<DashHome></DashHome>} />,
+      },
+      {
+        path: "/doctor-dashboard/profile",
+        element: <PrivateRoute element={<ViewProfile></ViewProfile>} />,
+      },
+      {
+        path: "/doctor-dashboard/analytics",
+        element: <PrivateRoute element={<Chart></Chart>} />,
+      },
+      {
+        path: "/doctor-dashboard/add-vaccine",
+        element: (
+          <PrivateRoute element={<AddVaccineCampaign></AddVaccineCampaign>} />
+        ),
+      },
+      {
+        path: "/doctor-dashboard/patient-vaccine-list",
+        element: (
+          <PrivateRoute element={<PatientVaccineList></PatientVaccineList>} />
+        ),
+      },
+      {
+        path: "/doctor-dashboard/vaccine-control",
         element: <PrivateRoute element={<AllVaccineList></AllVaccineList>} />,
       },
     ],

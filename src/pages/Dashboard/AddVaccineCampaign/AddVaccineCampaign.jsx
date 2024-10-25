@@ -53,7 +53,7 @@ const AddVaccineCampaign = () => {
 
       if (response.data) {
         setIsLoading(false);
-        navigate("/dashboard/vaccine-list", {
+        navigate("/doctor-dashboard/vaccine-list", {
           state: { message: "Vaccine Added Successfully" },
         });
       }
@@ -64,22 +64,24 @@ const AddVaccineCampaign = () => {
   };
 
   return (
-    <div className="bg-white border rounded-lg px-8 py-6 mx-auto my-8  w-96">
-      {error && <p className="text-red-500">{error}</p>}
-      <h2 className="text-4xl text-center font-medium text-pink-600">
+    <div className="bg-white shadow-md rounded-lg px-8 py-6 mx-auto my-8 w-full max-w-lg">
+      {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+      <h2 className="text-3xl text-center font-semibold text-pink-600 mb-6">
         Add Vaccine Campaign
       </h2>
       <form onSubmit={handleSubmit}>
-        <div className="mb-4">
+        <div className="mb-6">
           <label className="block text-gray-700 font-medium mb-2">Image</label>
           <input
             type="file"
             name="image"
             onChange={(e) => setImage(e.target.files[0])}
-            className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
+            className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-500 transition duration-200 ease-in-out"
+            accept="image/*"
+            required
           />
         </div>
-        <div className="mb-4">
+        <div className="mb-6">
           <label className="block text-gray-700 font-medium mb-2">
             Vaccine Name
           </label>
@@ -88,55 +90,58 @@ const AddVaccineCampaign = () => {
             name="vaccine"
             value={vaccineName}
             onChange={(e) => setVaccineName(e.target.value)}
-            className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
+            className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-500 transition duration-200 ease-in-out"
             required
           />
         </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 font-medium mb-2">
-            Start Date
-          </label>
-          <input
-            type="date"
-            id="date"
-            name="date"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
-            className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
-            required
-          />
+        <div className="mb-6 grid grid-cols-2 gap-4">
+          <div>
+            <label className="block text-gray-700 font-medium mb-2">
+              Start Date
+            </label>
+            <input
+              type="date"
+              id="start-date"
+              name="start-date"
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
+              className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-500 transition duration-200 ease-in-out"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-gray-700 font-medium mb-2">
+              End Date
+            </label>
+            <input
+              type="date"
+              id="end-date"
+              name="end-date"
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
+              className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-500 transition duration-200 ease-in-out"
+              required
+            />
+          </div>
         </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 font-medium mb-2">
-            End Date
-          </label>
-          <input
-            type="date"
-            id="date"
-            name="date"
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
-            className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
-            required
-          />
-        </div>
-        <div className="mb-4">
+        <div className="mb-6">
           <label className="block text-gray-700 font-medium mb-2">
             Description
           </label>
           <textarea
-            id="message"
-            name="message"
+            id="description"
+            name="description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
+            className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-500 transition duration-200 ease-in-out"
             rows="5"
+            required
           ></textarea>
         </div>
         <div>
           <button
             type="submit"
-            className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+            className="w-full bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 transition duration-200 ease-in-out flex items-center justify-center"
           >
             {isLoading ? (
               <span className="loading loading-dots loading-sm"></span>

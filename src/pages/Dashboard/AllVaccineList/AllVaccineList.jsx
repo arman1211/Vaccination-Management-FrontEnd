@@ -76,7 +76,7 @@ const AllVaccineList = () => {
             <div className="w-16 h-16 border-4  border-dashed rounded-full animate-spin border-pink-500"></div>
           </div>
         ) : (
-          <table className="table table-lg">
+          <table className="w-full table table-auto">
             <thead>
               <tr>
                 <th>No.</th>

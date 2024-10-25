@@ -34,22 +34,17 @@ const PatientVaccines = () => {
     }
   }, [deletePermission, vaccineId]);
   useEffect(() => {
-    const userId = localStorage.getItem("user_id");
+    const userId = localStorage.getItem("patient_id");
     const fetchUserVaccine = async () => {
       setLoading(true);
       try {
         const response = await axios.get(
-          "https://vaccination-management-backend-drf.vercel.app/vaccine-campaign/booking/"
+          `https://vaccination-management-backend-drf.vercel.app/vaccine-campaign/bookings/${userId}`
         );
         console.log(response);
         if (response.data) {
-          const filterVaccine = response.data.filter(
-            (vaccine) => vaccine.patient.user.id === parseInt(userId)
-          );
-          console.log(filterVaccine);
           setLoading(false);
-          setVaccines(filterVaccine);
-          console.log(filterVaccine);
+          setVaccines(response.data);
         }
       } catch (error) {
         setLoading(false);

@@ -3,6 +3,15 @@ import { useEffect, useState } from "react";
 import profile from "../../../assets/doctor.jpg";
 import UpdateInfo from "./UpdateInfo";
 import UpdadePassword from "./UpdatePassword";
+import {
+  FiEdit,
+  FiKey,
+  FiMail,
+  FiMapPin,
+  FiPhone,
+  FiUser,
+} from "react-icons/fi";
+import { MdOutlineVerifiedUser } from "react-icons/md";
 
 const ViewProfile = () => {
   const [doctor, setDoctor] = useState(null);
@@ -11,18 +20,14 @@ const ViewProfile = () => {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    const userId = localStorage.getItem("user_id");
+    const userId = localStorage.getItem("doctor_id");
     const fetchUserVaccine = async () => {
       try {
         const response = await axios.get(
-          "https://vaccination-management-backend-drf.vercel.app/doctor/list/"
+          `https://vaccination-management-backend-drf.vercel.app/doctor/list/${userId}`
         );
         if (response.data) {
-          const filterVaccine = response.data.find(
-            (doctor) => doctor.doctor.id === parseInt(userId)
-          );
-          console.log(filterVaccine);
-          setDoctor(filterVaccine);
+          setDoctor(response.data);
         }
       } catch (error) {
         console.log("something wrong");
@@ -51,48 +56,67 @@ const ViewProfile = () => {
     setIsPasswordModalOpen(false);
   };
   return (
-    <div className="card lg:card-side bg-base-100 shadow-xl h-2/4 my-28 w-full m-auto ml-28">
-      <figure>
-        <img src={profile} alt="Album" className="w-96 rounded-badge" />
+    <div className="card lg:card-side bg-base-100 shadow-xl lg:h-3/4 my-10 w-full md:w-3/4 mx-auto lg:mx-28 p-4 lg:p-8">
+      <figure className="flex justify-center lg:justify-start">
+        <img
+          src={profile}
+          alt="Doctor Profile"
+          className="w-64 lg:w-96 rounded-badge"
+        />
       </figure>
+
       <div className="card-body">
-        <div className="flex items-center space-x-4">
-          <div>
-            <h2 className="text-5xl font-bold text-pink-500">
+        <div className="flex flex-col items-center lg:items-start">
+          <div className="flex items-center space-x-2 mb-2">
+            <FiUser className="text-pink-500" size={30} />
+            <h2 className="text-4xl lg:text-5xl font-bold text-pink-500">
               {doctor.doctor.username}
             </h2>
-            <p className="text-sm text-gray-600">{doctor.doctor.email}</p>
           </div>
+          <p className="text-sm text-gray-600 flex items-center">
+            <FiMail className="mr-1" /> {doctor.doctor.email}
+          </p>
         </div>
-        <div className="mt-4">
-          <h3 className="text-xl font-semibold">Contact Information</h3>
-          <p className="mt-2 text-gray-700">
+
+        <div className="mt-6 text-center lg:text-left">
+          <h3 className="text-2xl font-semibold">Contact Information</h3>
+          <p className="mt-3 text-gray-700 flex items-center">
+            <FiMapPin className="mr-2 text-blue-500" />
             <strong>Address:</strong> {doctor.address}
           </p>
-          <p className="mt-2 text-gray-700">
+          <p className="mt-2 text-gray-700 flex items-center">
+            <FiPhone className="mr-2 text-green-500" />
             <strong>Phone:</strong> {doctor.phone}
           </p>
-          <p className="mt-2 text-gray-700">
+          <p className="mt-2 text-gray-700 flex items-center">
+            <MdOutlineVerifiedUser className="mr-2 text-yellow-500" />
             <strong>NID:</strong> {doctor.nid}
           </p>
+        </div>
+
+        <div className="flex flex-col lg:flex-row mt-6 space-y-4 lg:space-y-0 lg:space-x-4 justify-center lg:justify-start">
           <button
-            className="btn btn-neutral btn-sm mt-4"
-            onClick={() => handleUpdateClick()}
+            className="btn bg-pink-600 text-white hover:bg-pink-500 btn-sm lg:btn-md flex items-center justify-center"
+            onClick={handleUpdateClick}
           >
-            Update Info
+            <FiEdit className="mr-2" /> Update Info
           </button>
           <button
-            className="btn btn-neutral btn-sm ml-4"
-            onClick={() => handlePasswordUpdateClick()}
+            className="btn btn-outline btn-sm lg:btn-md flex items-center justify-center"
+            onClick={handlePasswordUpdateClick}
           >
-            Change Password
+            <FiKey className="mr-2" /> Change Password
           </button>
         </div>
+
         {message && (
-          <div role="alert" className="alert alert-success bg-green-300">
+          <div
+            role="alert"
+            className="alert alert-success bg-green-300 mt-6 text-center lg:text-left"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 shrink-0 stroke-current"
+              className="h-6 w-6 shrink-0 stroke-current mr-2"
               fill="none"
               viewBox="0 0 24 24"
             >
@@ -107,6 +131,7 @@ const ViewProfile = () => {
           </div>
         )}
       </div>
+
       {isModalOpen && (
         <UpdateInfo
           doctor={doctor}
@@ -114,16 +139,16 @@ const ViewProfile = () => {
           onClose={handleCloseModal}
           setDoctor={setDoctor}
           setMessage={setMessage}
-        ></UpdateInfo>
+        />
       )}
       {isPasswordModalOpen && (
         <UpdadePassword
           doctor={doctor}
-          isOpen={isModalOpen}
+          isOpen={isPasswordModalOpen}
           onClose={handleCloseModal}
           setDoctor={setDoctor}
           setMessage={setMessage}
-        ></UpdadePassword>
+        />
       )}
     </div>
   );

@@ -74,7 +74,7 @@ const Login = () => {
         } else {
           localStorage.setItem("doctor_id", parseInt(doc_id));
           setIsLoading(false);
-          navigate("/dashboard");
+          navigate("/doctor-dashboard/home");
         }
       } else {
         setError(response.data.error);

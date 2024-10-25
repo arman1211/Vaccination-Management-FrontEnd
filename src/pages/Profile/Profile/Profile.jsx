@@ -13,18 +13,15 @@ const Profile = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const userId = localStorage.getItem("user_id");
+    const userId = localStorage.getItem("patient_id");
     const fetchUserVaccine = async () => {
       setLoading(true);
       try {
         const response = await axios.get(
-          "https://vaccination-management-backend-drf.vercel.app/patient/list/"
+          `https://vaccination-management-backend-drf.vercel.app/patient/list/${userId}`
         );
         if (response.data) {
-          const filterVaccine = response.data.find(
-            (patient) => patient.user.id === parseInt(userId)
-          );
-          setPatient(filterVaccine);
+          setPatient(response.data);
           setLoading(false);
         }
       } catch (error) {

@@ -82,11 +82,8 @@ const DoctorDashboard = () => {
         </nav>
       </div>
 
-      {/* Main Content */}
       <div className="flex-1 bg-gray-100">
-        {/* Header for Mobile */}
         <header className="bg-white shadow-md p-4 flex justify-between items-center md:px-6">
-          {/* Menu Button */}
           <button
             onClick={toggleSidebar}
             className="text-gray-800 focus:outline-none md:hidden"
@@ -94,10 +91,8 @@ const DoctorDashboard = () => {
             <FiMenu className="text-2xl" />
           </button>
 
-          {/* Title */}
           <h1 className="text-lg font-semibold">Dashboard</h1>
 
-          {/* Profile Menu */}
           <div className="relative">
             <button
               onClick={() => setProfileMenuOpen(!profileMenuOpen)}
@@ -112,6 +107,12 @@ const DoctorDashboard = () => {
                   className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
                 >
                   Profile
+                </Link>
+                <Link
+                  to="/"
+                  className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                >
+                  Go to home
                 </Link>
                 <a
                   href="#logout"

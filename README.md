@@ -8,11 +8,6 @@ Welcome to the Vaccination Management System project! This application aims to s
 - [Features](#features)
 - [Technologies](#technologies)
 - [Installation](#installation)
-- [Usage](#usage)
-- [API Endpoints](#api-endpoints)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
 
 ## Introduction
 
@@ -40,33 +35,14 @@ Follow these steps to set up the project on your local machine:
 
 1. **Clone the repository**:
     ```sh
-    git clone https://github.com/yourusername/vaccination-management-system.git
+    git clone https://github.com/arman1211/vaccination-management-frontend.git
     cd vaccination-management-system
     ```
 
-2. **Backend Setup**:
-    - Create a virtual environment:
-      ```sh
-      python -m venv venv
-      source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-      ```
-    - Install backend dependencies:
-      ```sh
-      pip install -r requirements.txt
-      ```
-    - Apply migrations:
-      ```sh
-      python manage.py migrate
-      ```
-    - Start the Django server:
-      ```sh
-      python manage.py runserver
-      ```
-
-3. **Frontend Setup**:
+2. **Frontend Setup**:
     - Navigate to the frontend directory:
       ```sh
-      cd frontend
+      cd accination-management-frontend
       ```
     - Install frontend dependencies:
       ```sh
@@ -77,10 +53,3 @@ Follow these steps to set up the project on your local machine:
       npm start
       ```
 
-## Usage
-
-### Running the Application
-
-- Start the backend server:
-  ```sh
-  python manage.py runserver

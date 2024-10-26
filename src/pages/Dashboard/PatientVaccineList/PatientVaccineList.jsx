@@ -1,28 +1,31 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useDashboardData } from "../../../context/DashBoardDataContext";
 
 const PatientVaccineList = () => {
-  const [vaccines, setVaccines] = useState([]);
-  const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    const fetchUserVaccine = async () => {
-      setLoading(true);
-      try {
-        const response = await axios.get(
-          "https://vaccination-management-backend-drf.vercel.app/vaccine-campaign/booking/"
-        );
-        console.log(response);
-        if (response.data) {
-          setLoading(false);
-          setVaccines(response.data);
-        }
-      } catch (error) {
-        setLoading(false);
-        console.log("something wrong");
-      }
-    };
-    fetchUserVaccine();
-  }, []);
+  // const [vaccines, setVaccines] = useState([]);
+  const { vaccines, loading, error, setVaccines } = useDashboardData();
+  const [updateSuccess, setUpdateSuccess] = useState(false);
+  // const [loading, setLoading] = useState(false);
+  // useEffect(() => {
+  //   const fetchUserVaccine = async () => {
+  //     setLoading(true);
+  //     try {
+  //       const response = await axios.get(
+  //         "https://vaccination-management-backend-drf.vercel.app/vaccine-campaign/booking/"
+  //       );
+  //       console.log(response);
+  //       if (response.data) {
+  //         setLoading(false);
+  //         setVaccines(response.data);
+  //       }
+  //     } catch (error) {
+  //       setLoading(false);
+  //       console.log("something wrong");
+  //     }
+  //   };
+  //   fetchUserVaccine();
+  // }, []);
   const handleCompleteDose = async (id) => {
     try {
       const response = await axios.put(
@@ -36,6 +39,8 @@ const PatientVaccineList = () => {
             vaccine.id === id ? { ...vaccine, is_completed: true } : vaccine
           )
         );
+        setUpdateSuccess(true);
+        setTimeout(() => setUpdateSuccess(false), 2000);
       }
     } catch (error) {
       alert("Failed to complete dose");
@@ -47,6 +52,14 @@ const PatientVaccineList = () => {
       <h2 className="font-bold text-center text-3xl text-pink-500 mb-4">
         All Patient Vaccine History
       </h2>
+      {updateSuccess && (
+        <div className="text-center text-green-600 font-semibold">
+          Dose marked as complete successfully!
+        </div>
+      )}
+      {error && (
+        <div className="text-center text-red-600 font-semibold">{error}</div>
+      )}
       {loading ? (
         <div className="flex justify-center items-center">
           <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-pink-500"></div>

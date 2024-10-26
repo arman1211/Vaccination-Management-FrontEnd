@@ -1,29 +1,9 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
 import { Line, Pie } from "react-chartjs-2"; // Import Line chart
 import "chart.js/auto";
+import { useDashboardData } from "../../../context/DashBoardDataContext";
 
 const Chart = () => {
-  const [vaccineData, setVaccineData] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const response = await axios.get(
-          "https://vaccination-management-backend-drf.vercel.app/vaccine-campaign/booking/"
-        );
-        setVaccineData(response.data);
-      } catch (error) {
-        console.error("Error fetching vaccine data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
+  const { vaccines, loading, error } = useDashboardData();
 
   if (loading)
     return (
@@ -33,10 +13,10 @@ const Chart = () => {
     );
 
   const vaccineTypes = Array.from(
-    new Set(vaccineData.map((item) => item.vaccine.name))
+    new Set(vaccines.map((item) => item.vaccine.name))
   );
   const vaccineCompletionData = vaccineTypes.map((type) => {
-    const vaccineTypeData = vaccineData.filter(
+    const vaccineTypeData = vaccines.filter(
       (item) => item.vaccine.name === type
     );
     return {
@@ -82,6 +62,9 @@ const Chart = () => {
   return (
     <div className="max-w-screen mx-auto p-4">
       <div className="flex flex-col md:flex-row justify-between space-y-4 md:space-y-0">
+        {error && (
+          <div className="text-center text-red-600 font-semibold">{error}</div>
+        )}
         <div className="flex-1 max-h-[540px]">
           <h2 className="text-xl font-semibold mb-2">
             Vaccine Type Completion Status

@@ -20,6 +20,8 @@ import Chart from "../pages/Dashboard/Chart/Chart";
 import Pricing from "../pages/Pricing/Pricing";
 import ConfirmPayment from "../pages/Pricing/ConfirmPayment";
 import SuccessPage from "../pages/Pricing/SuccessPage";
+import FailedPayment from "../pages/Pricing/FailedPayment";
+import CanceledPayment from "../pages/Pricing/CanceledPayment";
 
 export const router = createBrowserRouter([
   {
@@ -64,11 +66,23 @@ export const router = createBrowserRouter([
       },
       {
         path: "/pricing/confirm",
-        element: <ConfirmPayment></ConfirmPayment>,
+        element: (
+          <PrivateRoute
+            element={<ConfirmPayment></ConfirmPayment>}
+          ></PrivateRoute>
+        ),
       },
       {
         path: "/pricing/success/:tranId",
         element: <SuccessPage></SuccessPage>,
+      },
+      {
+        path: "/pricing/failed/:tranId",
+        element: <FailedPayment></FailedPayment>,
+      },
+      {
+        path: "/pricing/canceled/:tranId",
+        element: <CanceledPayment />,
       },
     ],
   },

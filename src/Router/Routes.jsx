@@ -17,6 +17,9 @@ import ContactUs from "../pages/ContactUs/ContactUs";
 import DoctorDashboard from "../pages/DoctorDashboard/DoctorDashboard/DoctorDashboard";
 import DashHome from "../pages/Dashboard/DashHome/DashHome";
 import Chart from "../pages/Dashboard/Chart/Chart";
+import Pricing from "../pages/Pricing/Pricing";
+import ConfirmPayment from "../pages/Pricing/ConfirmPayment";
+import SuccessPage from "../pages/Pricing/SuccessPage";
 
 export const router = createBrowserRouter([
   {
@@ -54,6 +57,18 @@ export const router = createBrowserRouter([
       {
         path: "/about-us",
         element: <ContactUs />,
+      },
+      {
+        path: "/pricing",
+        element: <Pricing></Pricing>,
+      },
+      {
+        path: "/pricing/confirm",
+        element: <ConfirmPayment></ConfirmPayment>,
+      },
+      {
+        path: "/pricing/success/:tranId",
+        element: <SuccessPage></SuccessPage>,
       },
     ],
   },

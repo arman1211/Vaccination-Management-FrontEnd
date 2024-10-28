@@ -4,6 +4,9 @@ import profile from "../../../assets/profile2.jpg";
 import PatientVaccines from "../PatientVaccineList/PatientVaccines";
 import UpdateInfo from "../UpdateInfo/UpdateInfo";
 import UpdadePassword from "../UpdateInfo/UpdadePassword";
+import PaymentHistory from "../PaymentHistory/PaymentHistory";
+import { useGlobalState } from "../../../Layout/GlobalState";
+import { FaCrown } from "react-icons/fa";
 
 const Profile = () => {
   const [patient, setPatient] = useState(null);
@@ -11,6 +14,7 @@ const Profile = () => {
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const globalState = useGlobalState();
 
   useEffect(() => {
     const userId = localStorage.getItem("patient_id");
@@ -59,9 +63,16 @@ const Profile = () => {
         <div className="card-body">
           <div className="flex items-center space-x-4">
             <div>
-              <h2 className="text-5xl font-bold text-pink-500">
-                {patient && patient.user.username}
-              </h2>
+              <div className="flex gap-2">
+                <h2 className="text-5xl font-bold text-pink-500">
+                  {patient && patient.user.username}{" "}
+                </h2>
+                <p>
+                  {globalState.isPremium && (
+                    <FaCrown className="text-yellow-500 mt-2" size={40} />
+                  )}
+                </p>
+              </div>
               <p className="text-sm text-gray-600 mt-1">
                 {patient && patient.user.email}
               </p>
@@ -136,6 +147,7 @@ const Profile = () => {
       ) : (
         <PatientVaccines></PatientVaccines>
       )}
+      <PaymentHistory></PaymentHistory>
     </>
   );
 };

@@ -23,9 +23,11 @@ const Login = () => {
         isAuthenticated: true,
         isPatient: true,
         isDoctor: false,
+        isPremium: patient.is_premium ? true : false,
       }));
 
       patId = patient.id;
+
       return patId;
     }
   };
@@ -41,6 +43,7 @@ const Login = () => {
         isAuthenticated: true,
         isPatient: false,
         isDoctor: true,
+        isPremium: false,
       }));
       const docId = doctor.id;
       console.log("docid ", docId);
@@ -95,7 +98,7 @@ const Login = () => {
             src="https://www.svgrepo.com/show/301692/login.svg"
             alt="Workflow"
           />
-          <h2 className="mt-6 text-center text-3xl text-pink-600 leading-9 font-extrabold text-gray-900">
+          <h2 className="mt-6 text-center text-3xl text-pink-600 leading-9 font-extrabol">
             Login to your account
           </h2>
           <p className="mt-2 text-center text-sm leading-5 text-gray-500 max-w">

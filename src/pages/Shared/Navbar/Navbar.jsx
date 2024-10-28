@@ -15,6 +15,7 @@ export const Navbar = () => {
       isAuthenticated: false,
       isPatient: false,
       isDoctor: true,
+      isPrmium: false,
     }));
     localStorage.removeItem("token");
     localStorage.removeItem("user_id");
@@ -69,6 +70,14 @@ export const Navbar = () => {
                   All Vaccine
                 </a>
               </li>
+              <li>
+                <a
+                  href="/pricing"
+                  className="text-lg font-bold hover:text-pink-500"
+                >
+                  pricing
+                </a>
+              </li>
             </ul>
           </div>
           <Link to={"/"} className="flex gap-1 items-center">
@@ -100,6 +109,14 @@ export const Navbar = () => {
                 className="text-lg font-bold hover:text-pink-500"
               >
                 All Vaccine
+              </a>
+            </li>
+            <li>
+              <a
+                href="/pricing"
+                className="text-lg font-bold hover:text-pink-500"
+              >
+                Pricing
               </a>
             </li>
           </ul>

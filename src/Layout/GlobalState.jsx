@@ -15,6 +15,7 @@ export const GlobalStateProvider = ({ children }) => {
           isPatient: false,
           isDoctor: false,
           isAuthenticated: false,
+          isPremium: false,
         };
   });
 

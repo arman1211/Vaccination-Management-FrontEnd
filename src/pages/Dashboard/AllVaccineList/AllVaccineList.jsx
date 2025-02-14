@@ -88,7 +88,7 @@ const AllVaccineList = () => {
               </tr>
             </thead>
             <tbody>
-              {vaccines.map((vaccine) => (
+              {vaccines?.map((vaccine) => (
                 <tr key={vaccine.id}>
                   <th>{vaccine.id}</th>
                   <td>{vaccine.name}</td>

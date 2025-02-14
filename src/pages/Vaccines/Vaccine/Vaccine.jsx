@@ -26,7 +26,7 @@ export const Vaccine = ({ vaccine, onOpenModal }) => {
           </h2>
         </div>
         <div className="card-actions flex justify-between mt-4">
-          {globalState.isPatient ? (
+          {globalState.isAuthenticated ? (
             <button
               onClick={() => onOpenModal(vaccine)}
               className="uppercase py-2 px-4 rounded-lg bg-pink-500 border-2 border-transparent text-white text-md hover:bg-pink-400 transition-colors duration-300"
@@ -38,7 +38,7 @@ export const Vaccine = ({ vaccine, onOpenModal }) => {
               to={"/login"}
               className="uppercase py-2 px-4 rounded-lg bg-pink-500 border-2 border-transparent text-white text-md hover:bg-pink-400 transition-colors duration-300"
             >
-              Login to take Dose
+              Login to take dose
             </Link>
           )}
           <Link

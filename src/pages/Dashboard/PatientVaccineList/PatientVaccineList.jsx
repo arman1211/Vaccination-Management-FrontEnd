@@ -80,7 +80,7 @@ const PatientVaccineList = () => {
               </tr>
             </thead>
             <tbody>
-              {vaccines.map((vaccine, index) => (
+              {vaccines?.map((vaccine, index) => (
                 <tr
                   key={vaccine.id}
                   className="text-sm text-gray-700 hover:bg-gray-50"

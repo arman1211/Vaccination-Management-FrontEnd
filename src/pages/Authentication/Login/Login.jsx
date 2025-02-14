@@ -176,10 +176,10 @@ const Login = () => {
           role="alert"
         >
           <p className="font-bold">Sample Patient Credentials</p>
-          <p>Username: patient</p>
+          <p>Username: patient1</p>
           <p>Password: asas1212</p>
           <p className="font-bold">Sample Doctor Credentials</p>
-          <p>Username: doctor</p>
+          <p>Username: doctor1</p>
           <p>Password: asas1212</p>
         </div>
       </div>

@@ -53,8 +53,8 @@ const DoctorDashboard = () => {
           <nav>
             <ul className="space-y-4">
               {[
-                { name: "Home", icon: <FiHome /> },
-                { name: "Analytics", icon: <FiBarChart2 /> },
+                // { name: "Home", icon: <FiHome /> },
+                // { name: "Analytics", icon: <FiBarChart2 /> },
                 { name: "Profile", icon: <FiUser /> },
                 { name: "Add Vaccine", icon: <FiBox /> },
                 { name: "Patient Vaccine List", icon: <FiList /> },

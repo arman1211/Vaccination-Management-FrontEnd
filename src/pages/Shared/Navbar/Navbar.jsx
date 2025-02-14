@@ -139,7 +139,7 @@ export const Navbar = () => {
                 </Link>
               ) : (
                 <Link
-                  to={"/doctor-dashboard/home"}
+                  to={"/doctor-dashboard/profile"}
                   className="btn uppercase py-2 px-4 rounded-lg bg-transparent border-2 border-pink-500 text-pink-500  hover:bg-pink-500 hover:text-white text-md"
                 >
                   Dashboard
